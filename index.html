@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="以人體一日為主軸，說明健管 45 天十種營養品的角色、必要性與進食時機。">
+<meta name="theme-color" content="#f3f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="營養品地圖">
+<meta property="og:title" content="健管45天營養品地圖">
+<meta property="og:description" content="十種營養品各負責什麼、為什麼不能省、為什麼在那個時間吃。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2318221d'/%3E%3Crect x='14' y='26' width='36' height='14' rx='7' fill='%23eda100'/%3E%3Crect x='14' y='26' width='18' height='14' rx='7' fill='%231baf7a'/%3E%3C/svg%3E">
+<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>健管45天營養品地圖</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: 一張「人體一日給藥紀錄表」— 左側時間脊柱貫穿全頁，四個工班色碼貫穿所有圖 */
+:root{
+  --bg:#f3f6f2; --card:#ffffff; --ink:#18221d; --muted:#56635b; --line:#d7dfd8; --soft:#e8eee8;
+  --build:#2a78d6; --fire:#eb6834; --gut:#1baf7a; --key:#eda100;
+  --d-prep:#77716f; --d-pro:#b3261e; --d-slim:#3f6b2a; --d-meta:#22407a;
+  --warn:#9a4b00; --warn-bg:#fff3e2;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111613; --card:#19201c; --ink:#e7ede9; --muted:#9eaaa2; --line:#2b352f; --soft:#212a25;
+  --build:#3987e5; --fire:#d95926; --gut:#199e70; --key:#c98500;
+  --d-prep:#9a9491; --d-pro:#e0605a; --d-slim:#79a85f; --d-meta:#7c9be0;
+  --warn:#ffb465; --warn-bg:#2b2116; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111613; --card:#19201c; --ink:#e7ede9; --muted:#9eaaa2; --line:#2b352f; --soft:#212a25;
+  --build:#3987e5; --fire:#d95926; --gut:#199e70; --key:#c98500;
+  --d-prep:#9a9491; --d-pro:#e0605a; --d-slim:#79a85f; --d-meta:#7c9be0;
+  --warn:#ffb465; --warn-bg:#2b2116; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.75}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:flex;flex-direction:column;gap:64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(30px,5.4vw,52px);font-weight:900;letter-spacing:.01em}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:900}
+h3{font-size:18px;font-weight:600}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:20px}
+.sec-head{display:flex;flex-direction:column;gap:8px}
+.lead{color:var(--muted);font-size:16px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;line-height:1;padding:6px 9px;border-radius:4px;background:var(--soft);white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted));flex:none}
+.c-build{--c:var(--build)} .c-fire{--c:var(--fire)} .c-gut{--c:var(--gut)} .c-key{--c:var(--key)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:end}
+.hero>*{min-width:0}
+.hero p{font-size:17px;margin-top:16px}
+.formula{border:1.5px solid var(--ink);padding:20px;display:flex;flex-direction:column;gap:14px;background:var(--card)}
+.formula .row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.formula b{font-family:var(--f-display);font-size:20px}
+.formula .op{font-family:var(--f-mono);color:var(--muted)}
+.formula .res{border-top:1px solid var(--line);padding-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line)}
+.stat{padding:16px 14px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line);min-width:0}
+.stat:last-child{border-right:0}
+.stat .v{font-family:var(--f-mono);font-size:28px;line-height:1.1}
+.stat .v small{font-size:14px;color:var(--muted)}
+.stat .k{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* teams legend */
+.teams{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.team{background:var(--card);border-top:4px solid var(--c);padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.team h3{font-size:17px}
+.team .who{font-size:13px;color:var(--muted)}
+.team p{font-size:14px}
+
+/* flow: 腸→肝→血管→細胞 */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.station{background:var(--card);border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.station+.station{border-left:0}
+.station .step{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.station h3{font-size:20px}
+.station .job{font-size:14px;color:var(--muted)}
+.station:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:18px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:13px;display:grid;place-items:center;z-index:1}
+.station ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.station li{font-size:14px;line-height:1.55}
+.station li .chip{margin-bottom:3px}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .teams{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:1fr 1fr}
+  .station:nth-child(3){border-left:1px solid var(--line)}
+  .station:nth-child(n+3){border-top:0}
+  .station:nth-child(2)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-13px}
+}
+@media (max-width:480px){
+  .teams,.flow{grid-template-columns:1fr}
+  .station{border-left:1px solid var(--line)!important}
+  .station+.station{border-top:0}
+  .station:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-13px;margin-left:-12px}
+}
+</style>
+<style>
+/* day spine */
+.day{display:flex;flex-direction:column;position:relative}
+.slot{display:grid;grid-template-columns:86px 1fr;gap:0 22px;position:relative}
+.slot>*{min-width:0}
+.slot .t{font-family:var(--f-mono);font-size:20px;padding-top:14px;text-align:right;position:relative}
+.slot .t small{display:block;font-size:12px;color:var(--muted);font-family:var(--f-body)}
+.slot .body{border-left:2px solid var(--line);padding:14px 0 26px 24px;position:relative;display:flex;flex-direction:column;gap:10px}
+.slot .body::before{content:"";position:absolute;left:-8px;top:20px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.slot.meal .body::before{background:var(--ink)}
+.slot.quiet .body::before{border-style:dashed}
+.slot h3{font-size:19px}
+.state{font-size:14px;color:var(--muted)}
+.state b{color:var(--ink);font-weight:500}
+.why{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.why li{background:var(--card);border:1px solid var(--line);padding:10px 12px;font-size:14px;line-height:1.6}
+.why li b{font-weight:700}
+.food{font-size:13px;color:var(--muted)}
+.food em{font-style:normal;color:var(--ink);border-bottom:1px dotted var(--muted)}
+@media (max-width:560px){.slot{grid-template-columns:56px 1fr;gap:0 14px}.slot .t{font-size:16px}.slot .body{padding-left:18px}}
+
+/* MAR matrix */
+.mar-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line)}
+table.mar{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+.mar th,.mar td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
+.mar thead th{font-family:var(--f-mono);font-weight:500;font-size:12.5px;color:var(--muted);background:var(--soft);position:sticky;top:0}
+.mar thead th small{display:block;font-family:var(--f-body);font-size:11px}
+.mar tbody th{text-align:left;font-weight:500;white-space:nowrap}
+.mar tbody th .chip{background:transparent;padding:0;font-size:14px}
+.mar td.tot{font-family:var(--f-mono);font-weight:500;border-left:1px solid var(--line)}
+.dots{display:inline-flex;gap:3px;flex-wrap:wrap;justify-content:center;max-width:52px;padding:4px;border-radius:4px;cursor:default}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--c);display:block}
+.dots.pre i{background:transparent;border:2px solid var(--c)}
+.dots:hover,.dots:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+.mar tr.grp td,.mar tr.grp th{background:var(--soft);font-size:12px;color:var(--muted);text-align:left;padding:5px 8px;font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);align-items:center}
+.legend .k{display:inline-flex;align-items:center;gap:6px}
+.legend .s{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.legend .s.o{background:transparent;border:2px solid var(--muted)}
+.read{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.read>div{border-top:2px solid var(--ink);padding-top:10px;font-size:14px;min-width:0}
+.read b{display:block;font-family:var(--f-display);font-size:16px;margin-bottom:4px}
+@media (max-width:820px){.read{grid-template-columns:1fr}}
+#tip{position:fixed;z-index:20;pointer-events:none;max-width:260px;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.5;padding:8px 10px;border-radius:4px;opacity:0;transition:opacity .12s}
+#tip.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#tip{transition:none}}
+</style>
+
+<style>
+.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-20px;padding:8px 20px;margin-block:-32px}
+.toc::-webkit-scrollbar{display:none}
+.toc a{flex:none;color:var(--ink);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;min-height:36px;display:inline-flex;align-items:center}
+.toc a:hover,.toc a:focus-visible{background:var(--soft);outline:none}
+.sec{scroll-margin-top:64px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div>
+    <div class="eyebrow">45 天健康管理 · 營養品角色總覽</div>
+    <h1 style="margin-top:10px">熱量砍掉一半，<br>細胞的加班費一毛不能少</h1>
+    <p>健管期間熱量只剩平常的四到七成，但修復發炎的肝、腸、血管照樣在加班。課程把營養素比喻成「加班費」：沒有它，器官會罷工，身體也會拆肌肉來應急。這張地圖用你的一天當主軸，說明九種營養品各自負責哪段工作、為什麼不能省、為什麼安排在那個時間吃。</p>
+  </div>
+  <div class="formula" aria-label="健管核心公式">
+    <div class="eyebrow">清腸、清肝、清血管的必要條件</div>
+    <div class="row"><b>低熱量</b><span class="op">讓身體去燒存貨</span></div>
+    <div class="row"><span class="op">∩</span><b>營養充足</b><span class="op">讓修復有材料</span></div>
+    <div class="row res"><span class="op">=</span><b>原形食物 ＋ 營養品</b></div>
+    <p style="font-size:13.5px;color:var(--muted)">單靠食物做不到「熱量低、營養又齊」。蛋白日一整天只有 1 顆蛋和 150g 瘦肉，缺掉的部分要由營養品補齊。</p>
+  </div>
+</header>
+
+<div class="stats" role="list">
+  <div class="stat" role="listitem"><span class="v num">9<small> 種</small></span><span class="k">每天固定的營養品，45 天都沒停過</span></div>
+  <div class="stat" role="listitem"><span class="v num">6<small> 個時段</small></span><span class="k">08 · 10 · 12 · 14 · 16 · 18 點，大約每 2 小時進食一次</span></div>
+  <div class="stat" role="listitem"><span class="v num">≈85<small> g</small></span><span class="k">蛋白日一天的蛋白質，其中 56% 來自蛋白素</span></div>
+  <div class="stat" role="listitem"><span class="v num">2.8–3.3<small> L</small></span><span class="k">照菜單喝下的水；70 kg × 40 cc = 2.8 L</span></div>
+</div>
+
+<nav class="toc" aria-label="章節">
+  <a href="#teams">工班</a><a href="#flow">路線</a><a href="#day">一天</a><a href="#mar">總表</a><a href="#protein">蛋白質</a><a href="#weeks">45 天</a><a href="#gap">缺口</a><a href="#cards">角色卡</a><a href="#safe">安全</a>
+</nav>
+<section class="sec" id="teams">
+  <div class="sec-head">
+    <div class="eyebrow">先認識工班</div>
+    <h2>十種營養品分成四個工班</h2>
+    <p class="lead">這四種顏色在下面每張圖的意思都相同。分組依據是營養品在身體裡做的工作，跟品牌分類無關。</p>
+  </div>
+  <div class="teams">
+    <div class="team c-build" style="--c:var(--build)"><h3>建材組</h3><span class="who">蛋白素</span><p>提供蓋房子的磚頭：肌肉、酵素、免疫球蛋白、肝臟運出脂肪用的載體，都是用蛋白質做的。</p></div>
+    <div class="team c-key" style="--c:var(--key)"><h3>鑰匙組</h3><span class="who">DX · 雙效 B 群 · 加美 D 鈣片</span><p>維生素和礦物質是啟動代謝的鑰匙。熱量變少時，每一卡熱量都要確實燒乾淨，鑰匙就更不能缺。</p></div>
+    <div class="team c-fire" style="--c:var(--fire)"><h3>滅火組</h3><span class="who">魚油 · 綠茶素 · 強效 C</span><p>負責壓低慢性發炎、清除燃脂時產生的自由基。這組直接服務健管的主要目標：降低內臟發炎。</p></div>
+    <div class="team c-gut" style="--c:var(--gut)"><h3>腸道組</h3><span class="who">纖維片 · 益生菌 · 易孅菌</span><p>顧好食物的入口。腸道失衡時，其他營養品吃進去也吸收不好。</p></div>
+  </div>
+</section>
+
+<section class="sec" id="flow">
+  <div class="sec-head">
+    <div class="eyebrow">三清路線</div>
+    <h2>營養從嘴巴到細胞，要經過四個關卡</h2>
+    <p class="lead">食物先進腸道，經門靜脈送到肝臟加工，再由血管送到全身六十兆個細胞。前面任何一關卡住，後面就收不到營養。每種營養品都有它主要負責的關卡。</p>
+  </div>
+  <div class="flow">
+    <div class="station"><span class="step">關卡 1 · 入口</span><h3>腸道</h3><span class="job">吸收、篩選、擋住壞東西</span>
+      <ul>
+        <li><span class="chip c-gut">纖維片</span><br>當掃把和海綿：增加糞便體積，也是好菌的飼料</li>
+        <li><span class="chip c-gut">益生菌 · 易孅菌</span><br>調整好菌與壞菌的比例，讓腸道吸收順暢</li>
+      </ul></div>
+    <div class="station"><span class="step">關卡 2 · 化工廠</span><h3>肝臟</h3><span class="job">分解脂肪、合成蛋白、處理代謝廢物</span>
+      <ul>
+        <li><span class="chip c-build">蛋白素</span><br>提供脂蛋白原料，肝臟才能把脂肪「打包運出去」。蛋白質不夠，是脂肪肝的成因之一</li>
+        <li><span class="chip c-key">B 群</span><br>脂肪和胺基酸要變成能量，每個步驟都需要它當輔酶</li>
+      </ul></div>
+    <div class="station"><span class="step">關卡 3 · 運輸線</span><h3>血管</h3><span class="job">運送養分，並降低血管壁發炎</span>
+      <ul>
+        <li><span class="chip c-fire">魚油</span><br>EPA/DHA 能降三酸甘油酯，也是體內抗發炎物質的原料</li>
+        <li><span class="chip c-fire">強效 C</span><br>血管壁的膠原蛋白要靠它合成，也能把用過的維生素 E 還原再用</li>
+      </ul></div>
+    <div class="station"><span class="step">關卡 4 · 終點</span><h3>細胞</h3><span class="job">肌肉、骨骼、神經、免疫</span>
+      <ul>
+        <li><span class="chip c-build">蛋白素</span><br>保住肌肉，基礎代謝才不會掉</li>
+        <li><span class="chip c-key">DX · 鈣鎂 D</span><br>供應肌肉收縮、神經傳導和骨骼需要的整套微量營養素</li>
+        <li><span class="chip c-fire">綠茶素</span><br>抗氧化，清除細胞燃脂時產生的自由基</li>
+      </ul></div>
+  </div>
+</section>
+<section class="sec" id="day">
+  <div class="sec-head">
+    <div class="eyebrow">主軸 · 跟著身體過一天</div>
+    <h2>每個時間點吃什麼，身體正在發生什麼事</h2>
+    <p class="lead">以第 2 週以後的纖體日為例（W2–W6 的營養品完全相同，只有食物會換）。實心圓點是正餐，空心圓點是餐間補給。</p>
+  </div>
+  <div class="day">
+
+    <div class="slot quiet"><div class="t">07:30<small>起床後</small></div><div class="body">
+      <h3>飯前：纖維片 1 顆＋水 500cc</h3>
+      <div class="chips"><span class="chip c-gut">纖維片 ×1</span><span class="chip">水 500cc</span></div>
+      <p class="state"><b>身體狀態：</b>空腹一整夜，睡覺時透過呼吸和流汗少了約 300–500cc 的水，血液偏濃，腸道還沒開始蠕動。</p>
+      <ul class="why">
+        <li><b>為什麼飯前吃？</b>纖維吸水後會膨脹，先占掉一部分胃的空間，讓胃排空變慢，早餐後血糖上升得比較平緩。</li>
+        <li><b>為什麼要配 500cc？</b>纖維沒有水就會卡在腸道裡，反而更容易便祕。這杯水也補回睡覺時流失的水分。</li>
+      </ul>
+    </div></div>
+
+    <div class="slot meal"><div class="t">08:00<small>早餐</small></div><div class="body">
+      <h3>一天中營養品最多的一餐</h3>
+      <div class="chips"><span class="chip c-build">蛋白素 1 匙＋300cc</span><span class="chip c-key">DX 1 組</span><span class="chip c-fire">綠茶素 ×1</span><span class="chip c-fire">強效 C ×1</span><span class="chip c-fire">魚油 ×1</span><span class="chip c-gut">易孅菌 ×1</span></div>
+      <p class="food">搭配食物：<em>水煮蛋 1 顆</em>（纖體日加半份水果；新陳代謝日再加穀物 80g）</p>
+      <p class="state"><b>身體狀態：</b>早上皮質醇最高，代謝剛啟動。早餐吃進大量澱粉，血糖會先衝高再掉下來，整天的食慾都會被打亂。</p>
+      <ul class="why">
+        <li><b>魚油、DX 為什麼跟蛋一起吃？</b>EPA、DHA 和維生素 A、D、E、K 都是脂溶性的，需要食物裡的油脂引發膽汁分泌才吸收得好。蛋黃就提供了這些油脂。</li>
+        <li><b>強效 C 為什麼早晚各一顆？</b>它是 8 小時緩釋錠。08:00 和 18:00 各吃一顆，可以涵蓋清醒的大部分時間。維生素 C 存不住，分兩次吃比一次吃兩顆穩定。</li>
+        <li><b>綠茶素為什麼一定要隨餐？</b>高劑量綠茶萃取物空腹服用有肝損傷的個案報告。健管的目標是讓肝臟休養，所以要和食物一起吃。</li>
+        <li><b>易孅菌為什麼放早餐？</b>它是後生元（不活的菌體加上代謝物），不怕胃酸，可以直接隨餐吃。每天放在同一個時間，比較不容易忘記。</li>
+      </ul>
+    </div></div>
+
+    <div class="slot"><div class="t">10:00<small>餐間</small></div><div class="body">
+      <h3>第一次餐間補給</h3>
+      <div class="chips"><span class="chip c-build">蛋白素 1 匙＋300cc</span><span class="chip c-key">B 群 ×1</span><span class="chip c-key">鈣片 ×2</span></div>
+      <p class="state"><b>身體狀態：</b>早餐後約 2 小時，血糖開始往下，第一波飢餓感出現，這也是最容易伸手拿餅乾的時間。</p>
+      <ul class="why">
+        <li><b>為什麼這時候補蛋白質？</b>在血糖往下掉之前補上 8g 蛋白質，飢餓感會比較晚出現，胺基酸也持續供應給肌肉。</li>
+        <li><b>鈣為什麼不跟正餐一起吃？</b>一次吃的鈣量越少，吸收率越高，所以一天 6 錠分成三次。放在餐間也可以避開 DX 裡的其他礦物質，以及纖維片對吸收的干擾。</li>
+        <li><b>B 群為什麼放白天？</b>B 群是把蛋白素和體脂肪轉成能量的輔酶，白天活動量大時最需要。三次都排在 16:00 前，晚上不吃。</li>
+      </ul>
+    </div></div>
+
+    <div class="slot meal"><div class="t">12:00<small>午餐</small></div><div class="body">
+      <h3>蛋白質最多的一餐</h3>
+      <div class="chips"><span class="chip c-build">蛋白素 1 匙＋300cc</span><span class="chip c-key">DX 1 組</span><span class="chip c-fire">綠茶素 ×1</span></div>
+      <p class="food">搭配食物：<em>瘦肉 75g</em> ＋ 半份水果 ＋ 1–2 份蔬菜（蛋白日只吃肉；新陳代謝日肉加到 150g，再加穀物 80g）</p>
+      <p class="state"><b>身體狀態：</b>白天代謝最旺盛的時段。蛋白素加上瘦肉，這一餐約有 23g 蛋白質，足以刺激肌肉合成。</p>
+      <ul class="why">
+        <li><b>DX 為什麼分三餐吃？</b>DX 的水溶性維生素在體內只停留幾個小時，分成早、午、晚三次，全天血液中都有。礦物質空腹吃容易反胃，隨餐比較舒服。</li>
+      </ul>
+    </div></div>
+
+    <div class="slot"><div class="t">14:00<small>16:00</small></div><div class="body">
+      <h3>下午兩次餐間補給</h3>
+      <div class="chips"><span class="chip c-build">蛋白素 1 匙＋300cc ×2</span><span class="chip c-key">B 群 ×1 ×2</span><span class="chip c-key">鈣片 ×2 ×2</span></div>
+      <p class="state"><b>身體狀態：</b>14:00 是飯後想睡的時候，16:00 是最想吃甜食的時候。這兩個時段的嘴饞，常常其實是口渴：先喝 300–500cc 水，等 20 分鐘還餓才是真的餓。</p>
+      <ul class="why">
+        <li><b>為什麼是每 2 小時一次？</b>低熱量期間如果間隔太久，人會餓到暴食。每 2 小時給一點蛋白質加 300cc 水，可以穩住飢餓感。對可執行性來說，這是整份菜單最重要的設計。</li>
+      </ul>
+    </div></div>
+
+    <div class="slot meal"><div class="t">18:00<small>晚餐</small></div><div class="body">
+      <h3>飯前纖維片＋晚餐，這是當天最後一次進食</h3>
+      <div class="chips"><span class="chip c-gut">飯前 纖維片 ×1＋500cc</span><span class="chip c-build">蛋白素 1 匙＋300cc</span><span class="chip c-key">DX 1 組</span><span class="chip c-fire">綠茶素 ×1</span><span class="chip c-fire">強效 C ×1</span><span class="chip c-fire">魚油 ×1</span></div>
+      <p class="food">搭配食物：<em>瘦肉 75g</em> ＋ 半份水果 ＋ 1–2 份蔬菜</p>
+      <p class="state"><b>身體狀態：</b>晚餐通常是一天中最容易吃太多的一餐。吃飽後身體接下來要進入整晚的修復。</p>
+      <ul class="why">
+        <li><b>纖維片為什麼是早餐和晚餐前？</b>這兩餐的前後各隔了一整晚，是最容易餓、也最容易吃過量的兩餐，所以飯前先用纖維片和水墊胃。</li>
+        <li><b>魚油和 C 為什麼晚上再吃一次？</b>夜間是組織修復的時段，修復需要抗發炎原料（ω-3）和合成膠原蛋白用的 C。</li>
+      </ul>
+    </div></div>
+
+    <div class="slot quiet"><div class="t">18:00<small>→ 隔天 08:00</small></div><div class="body">
+      <h3>連續 14 小時不進食</h3>
+      <p class="state"><b>身體狀態：</b>胰島素回到低點，身體開始動用肝醣和脂肪。這一段不需要吃任何營養品，晚上不排 B 群和綠茶素，也不會打擾睡眠。只要口渴，照樣喝水。</p>
+    </div></div>
+
+  </div>
+</section>
+
+<section class="sec" id="mar">
+  <div class="sec-head">
+    <div class="eyebrow">給藥紀錄表 · 一天的全貌</div>
+    <h2>把一天攤成一張表：三種節奏一目了然</h2>
+    <p class="lead">每個圓點代表一顆、一匙或一組。滑過圓點可以看到吃的原因。這張表是纖體日和新陳代謝日的版本，蛋白日只在第 1 週多了益生菌（見下一節）。</p>
+  </div>
+  <div class="legend"><span class="k"><span class="s"></span>隨餐或餐間服用</span><span class="k"><span class="s o"></span>飯前空腹服用</span><span class="k" style="color:var(--build)">● 建材</span><span class="k" style="color:var(--key)">● 鑰匙</span><span class="k" style="color:var(--fire)">● 滅火</span><span class="k" style="color:var(--gut)">● 腸道</span></div>
+  <div class="mar-wrap"><table class="mar" id="marT"></table></div>
+  <div class="read">
+    <div><b>隨三餐吃：DX · 綠茶素</b>需要食物一起吃，才能吸收得好、不傷胃傷肝。</div>
+    <div><b>早晚各一：魚油 · 強效 C · 纖維片</b>脂溶性、緩釋 8 小時、擋住最容易吃多的兩餐，三種原因剛好都對應早晚兩個時段。</div>
+    <div><b>餐間吃：B 群 · 鈣片 · 蛋白素</b>少量多次，讓血糖和胺基酸穩定，也讓礦物質避開正餐時的吸收競爭。</div>
+  </div>
+</section>
+<style>
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}
+.two>*{min-width:0}
+.panel{background:var(--card);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:12px}
+.panel h3{font-size:16px}
+.cols{display:grid;grid-template-columns:28px repeat(6,1fr);gap:0 8px;align-items:end;height:200px;position:relative}
+.yax{position:relative;height:160px;align-self:end;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.yax span{position:absolute;right:0;transform:translateY(50%)}
+.col{display:flex;flex-direction:column-reverse;gap:2px;align-self:end;cursor:default}
+.col .seg{border-radius:0}
+.col .seg:last-child{border-radius:4px 4px 0 0}
+.col .lab{font-family:var(--f-mono);font-size:12px;text-align:center;color:var(--ink)}
+.xax{display:grid;grid-template-columns:28px repeat(6,1fr);gap:0 8px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);text-align:center;border-top:1px solid var(--muted);padding-top:4px}
+.grid-l{position:absolute;left:36px;right:0;border-top:1px dashed var(--line)}
+.hbars{display:flex;flex-direction:column;gap:12px}
+.hb{display:grid;grid-template-columns:92px 1fr 48px;gap:10px;align-items:center;font-size:13.5px}
+.hb .tr{position:relative;height:18px}
+.hb .fill{height:100%;border-radius:0 4px 4px 0;display:flex;gap:2px}
+.hb .fill i{display:block;height:100%}
+.band{position:absolute;top:-6px;bottom:-6px;background:var(--soft);border-left:1px dashed var(--muted);border-right:1px dashed var(--muted)}
+.hb .v{font-family:var(--f-mono);text-align:right}
+.note{font-size:12.5px;color:var(--muted);line-height:1.6}
+/* 45-day strip */
+.strip{display:grid;grid-template-columns:repeat(45,1fr);gap:2px}
+.strip i{height:30px;display:block;border-radius:2px}
+.strip i.w{box-shadow:inset 0 -3px 0 var(--ink)}
+.dt-prep{background:var(--d-prep)} .dt-pro{background:var(--d-pro)} .dt-slim{background:var(--d-slim)} .dt-meta{background:var(--d-meta)}
+.phase{display:grid;grid-template-columns:10fr 21fr 14fr;gap:6px;font-size:12.5px;color:var(--muted)}
+.phase div{border-top:1px solid var(--ink);padding-top:4px;min-width:0}
+.script{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+.script th,.script td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+.script thead th{font-size:12.5px;color:var(--muted);font-weight:500;background:var(--soft)}
+.script td.on{font-weight:500}
+.script .tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:3px;color:#fff;margin-right:4px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+@media (max-width:560px){.strip i{height:22px}.strip{gap:1px}}
+</style>
+
+<section class="sec" id="protein">
+  <div class="sec-head">
+    <div class="eyebrow">建材組的量化 · 以蛋白日為例</div>
+    <h2>蛋白質要少量多次：一天吃 6 次，總量約 85g</h2>
+    <p class="lead">蛋白素每匙約含 8g 蛋白質、38 大卡。蛋白日沒有蔬果和澱粉，熱量最低，但蛋白質沒有減少，也沒有一次塞完，而是平均分散在一天裡。</p>
+  </div>
+  <div class="two">
+    <div class="panel">
+      <h3>各時段的蛋白質（g）</h3>
+      <div class="legend"><span class="k"><span class="s" style="background:var(--build)"></span>蛋白素</span><span class="k"><span class="s" style="background:var(--muted)"></span>原形食物（蛋、瘦肉）</span></div>
+      <div class="cols" id="pcols"></div>
+      <div class="xax"><span></span><span>08</span><span>10</span><span>12</span><span>14</span><span>16</span><span>18</span></div>
+      <p class="note">估算：水煮蛋 1 顆約 7g；瘦肉 75g 約 2 份，約 15g（食物代換表每份 7g）。</p>
+    </div>
+    <div class="panel">
+      <h3>三種日子的蛋白質總量 vs 建議區間</h3>
+      <div class="hbars" id="hbars"></div>
+      <p class="note">灰色區間是 70 kg 成人在減重期的建議量：每公斤 1.1–1.5g，約 77–105g。新陳代謝日的瘦肉加倍，蛋白質總量會超出這個區間，這段期間也是在補回肌肉和肝醣。</p>
+    </div>
+  </div>
+  <div class="read">
+    <div><b>為什麼不能省？</b>明尼蘇達飢餓實驗顯示，熱量低又缺蛋白質時，身體會分解肌肉來應急。健管 368 人的數據裡，骨骼肌率反而上升了 0.87。</div>
+    <div><b>為什麼要分 6 次？</b>每次 8–23g，讓血中胺基酸整天不中斷，血糖曲線也比較平。蛋白質本身的食物熱效應最高，消化它就要消耗約 20–30% 的熱量。</div>
+    <div><b>為什麼選這款蛋白素？</b>它是大豆、小麥、豌豆的組合，PDCAAS 達到 1.0，0 膽固醇、0 乳糖，一匙只有 38 大卡。給腸胃和肝臟的負擔比吃等量的肉輕。</div>
+  </div>
+</section>
+
+<section class="sec" id="weeks">
+  <div class="sec-head">
+    <div class="eyebrow">45 天的時間軸 · 第 1–6 週</div>
+    <h2>食物每週在變，營養品的組合 45 天都不變</h2>
+    <p class="lead">一格代表一天，顏色沿用菜單原本的色碼。唯一會換的營養品是「菌」：第一週先大量打底，之後每天一顆維持。</p>
+  </div>
+  <div class="panel">
+    <div class="strip" id="strip" aria-label="45 天日子類型"></div>
+    <div class="phase"><div>W1 · 10 天：準備 3 → 蛋白 3 → 纖體 4</div><div>W2–W4 · 21 天：每週一蛋白日，其餘纖體日</div><div>W5–W6 · 14 天：每週一蛋白日，其餘新陳代謝日</div></div>
+    <div class="legend"><span class="k"><span class="s" style="background:var(--d-prep);border-radius:2px"></span>準備日 · 正常吃</span><span class="k"><span class="s" style="background:var(--d-pro);border-radius:2px"></span>蛋白日 · 0 醣燃脂</span><span class="k"><span class="s" style="background:var(--d-slim);border-radius:2px"></span>纖體日 · 少醣維持</span><span class="k"><span class="s" style="background:var(--d-meta);border-radius:2px"></span>新陳代謝日 · 含醣修復</span></div>
+  </div>
+  <div class="mar-wrap"><table class="script">
+    <thead><tr><th style="width:150px">階段</th><th>菌的安排（腸道組）</th><th>食物的變化</th><th>營養品這時的主要任務</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tag" style="background:var(--d-prep)">準備日</span>W1 五六日</td><td class="on">易孅菌 2 顆 × 三餐飯前（一天 6 顆）</td><td>正餐照常吃</td><td>先把腸道菌相調好，讓身體適應 6 個時段的節奏。這三天是在養成習慣，飲食還沒開始限制。</td></tr>
+      <tr><td><span class="tag" style="background:var(--d-pro)">蛋白日</span>W1 一二三</td><td class="on">益生菌 1 條 × 三餐飯前；早餐另加易孅菌 1 顆</td><td>只有蛋和瘦肉，沒有蔬果和澱粉</td><td>肝醣大約 2–3 天會用完。這段時間 DX 和 C 代替蔬果，纖維片代替蔬菜纖維，蛋白素保住肌肉。</td></tr>
+      <tr><td><span class="tag" style="background:var(--d-slim)">纖體日</span>W1 後段–W4</td><td class="on">易孅菌 1 顆，隨早餐</td><td>加回 1–2 份蔬菜、半份水果</td><td>穩定期。蛋白日連續三天後開始便祕的人，這時靠真蔬菜加纖維片改善。</td></tr>
+      <tr><td><span class="tag" style="background:var(--d-meta)">新陳代謝日</span>W5–W6</td><td class="on">易孅菌 1 顆，隨早餐</td><td>穀物 80g、瘦肉加到 150g</td><td>補回肝醣，讓身體知道「沒有在鬧饑荒」，以免體重設定點被調高。營養品照常吃，為之後回到日常飲食做準備。</td></tr>
+    </tbody>
+  </table></div>
+</section>
+<style>
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--line)}
+.gap>div{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.gap>div:nth-child(odd){border-right:1px solid var(--line)}
+.gap .h{background:var(--soft);font-size:12.5px;color:var(--muted)}
+.gap b{font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.card h3{font-size:18px}
+.card .dose{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.card .meta{font-size:12.5px;color:var(--muted);line-height:1.55}
+.card dl{margin:0;display:flex;flex-direction:column;gap:8px}
+.card dt{font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.card dd{margin:0;font-size:14px;line-height:1.6}
+.tier{font-size:12px;padding:3px 8px;border-radius:3px;border:1px solid currentColor;white-space:nowrap}
+.t1{color:var(--ink);font-weight:700}
+.t2{color:var(--muted)}
+.t3{color:var(--muted);border-style:dashed}
+.ev{font-size:12.5px;border-top:1px dashed var(--line);padding-top:8px;color:var(--muted)}
+.ev b{color:var(--ink);font-weight:500}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.cards,.gap{grid-template-columns:1fr}.gap>div:nth-child(odd){border-right:0}.gap .h:nth-child(2){display:none}}
+</style>
+
+<section class="sec" id="gap">
+  <div class="sec-head">
+    <div class="eyebrow">必要性的根據</div>
+    <h2>判斷必不必要，先看菜單本身缺了什麼</h2>
+    <p class="lead">判斷某樣營養品該不該吃，不看廣告怎麼說，看的是這份菜單少了哪些營養素。缺口越大、越難靠食物補，這樣營養品就越必要。</p>
+  </div>
+  <div class="gap">
+    <div class="h">菜單缺口（以蛋白日最明顯）</div><div class="h">由誰補位</div>
+    <div><b>熱量只剩 700–900 大卡</b>身體很容易分解肌肉來應急</div><div><span class="chip c-build">蛋白素 6 匙</span>每天補約 48g 蛋白質，熱量只有約 230 大卡</div>
+    <div><b>完全沒有蔬果</b>維生素、礦物質、植化素都歸零</div><div><div class="chips"><span class="chip c-key">DX 3 組</span><span class="chip c-fire">強效 C 2 顆</span></div>21 種蔬果萃取、12 種維生素、10 種礦物質</div>
+    <div><b>沒有蔬菜纖維</b>連續三天沒吃蔬菜，常見第三天開始便祕</div><div><span class="chip c-gut">纖維片 2 顆＋1L 水</span>早晚飯前各一顆</div>
+    <div><b>沒有奶類和深綠色蔬菜</b>鈣幾乎吃不到；國人本來就普遍缺鈣</div><div><span class="chip c-key">加美 D 鈣片 6 錠</span>鈣、鎂和 D3 一起補，吸收比較好</div>
+    <div><b>少油、少魚</b>ω-3 很難從食物吃夠；一天 1g 約等於 1 公斤台灣鯛</div><div><span class="chip c-fire">魚油 2 粒</span>EPA 572mg＋DHA 428mg ≈ 1g</div>
+    <div><b>八戒：無茶、無咖啡</b>同時也少了茶多酚這類抗氧化物</div><div><span class="chip c-fire">綠茶素 3 顆</span>保留兒茶素，並去除多餘的咖啡因</div>
+    <div><b>能量低、容易疲倦</b>燃燒脂肪時，代謝步驟需要的輔酶更多</div><div><span class="chip c-key">雙效 B 群 3 顆</span>8 種 B 群，緩釋 8 小時</div>
+    <div><b>腸道是三清的第一關</b>腸道不好，後面的營養也吸收不好</div><div><div class="chips"><span class="chip c-gut">益生菌</span><span class="chip c-gut">易孅菌</span></div>第一週大量打底，之後每天維持</div>
+  </div>
+</section>
+
+<section class="sec" id="cards">
+  <div class="sec-head">
+    <div class="eyebrow">九張角色卡 · 益生菌與易孅菌合併成一張</div>
+    <h2>每一種營養品：負責什麼、不吃會怎樣、為什麼在這個時間吃</h2>
+    <p class="lead">右上角是必要性分級。<b>核心</b>：菜單的缺口只能靠它補，不能省。<b>重要</b>：直接服務抗發炎和精神體力，建議照吃。<b>輔助</b>：有幫助，但證據比較弱，或效果因人而異。</p>
+  </div>
+  <div class="cards">
+
+    <article class="card" style="--c:var(--build)"><div class="top"><h3>優質蛋白素</h3><span class="tier t1">核心</span></div>
+      <span class="dose">6 匙/日 · 每 2 小時 1 匙＋300cc</span>
+      <dl><dt>角色</dt><dd>建材，也是延長飽足感的工具。大豆、小麥、豌豆三種蛋白組合，PDCAAS 1.0。</dd>
+      <dt>不吃會怎樣</dt><dd>熱量低又缺蛋白質，減掉的會是肌肉。基礎代謝跟著下降，之後容易復胖。</dd>
+      <dt>時機邏輯</dt><dd>三餐加三次餐間，平均分散。配 300cc 水讓粉末撐開胃，也順便把一天的喝水量分攤掉。</dd></dl>
+      <p class="ev"><b>證據：強。</b>減重期間高蛋白可以保留肌肉，多項研究結論一致。</p></article>
+
+    <article class="card" style="--c:var(--key)"><div class="top"><h3>DX 蔬果綜合營養片</h3><span class="tier t1">核心</span></div>
+      <span class="dose">3 組/日 · 隨三餐</span>
+      <dl><dt>角色</dt><dd>代替蔬菜的工具箱：12 種維生素、10 種礦物質，加上 21 種蔬果萃取（植化素，抗發炎）。</dd>
+      <dt>不吃會怎樣</dt><dd>蛋白日完全沒有蔬果，微量營養素會出現缺口。代謝的鑰匙不夠，人會疲倦，免疫力也會下降。</dd>
+      <dt>時機邏輯</dt><dd>隨餐吃，靠食物的油脂幫助脂溶性營養素吸收，礦物質也不會刺激胃。分成三餐，水溶性維生素全天都有。</dd></dl>
+      <p class="ev"><b>證據：中到強。</b>補足缺口很合理；但錠劑沒有份量和纖維，不能完全取代真蔬菜。</p></article>
+
+    <article class="card" style="--c:var(--key)"><div class="top"><h3>加美 D 鈣片</h3><span class="tier t1">核心</span></div>
+      <span class="dose">6 錠/日 · 10、14、16 點各 2 錠</span>
+      <dl><dt>角色</dt><dd>鈣、鎂、D3 三種一起補。三者分工合作：骨骼是鋼筋，肌肉收縮和神經傳導像電路，都靠這三種營養素。</dd>
+      <dt>不吃會怎樣</dt><dd>菜單幾乎吃不到鈣，血鈣不夠時身體會從骨頭借鈣。低醣初期排水，礦物質也跟著流失，可能出現抽筋、心悸。</dd>
+      <dt>時機邏輯</dt><dd>分三次吃，每次量少吸收率高；排在餐間，避開 DX 和纖維；每次配 300cc 水，降低結石風險。</dd></dl>
+      <p class="ev"><b>證據：強。</b>分次補鈣能提高吸收率，鈣搭配 D3 也有明確依據。</p></article>
+
+    <article class="card" style="--c:var(--fire)"><div class="top"><h3>三倍強效魚油</h3><span class="tier t2">重要</span></div>
+      <span class="dose">2 粒/日 · 早餐、晚餐各 1 粒</span>
+      <dl><dt>角色</dt><dd>消防隊：EPA、DHA 是體內抗發炎物質的原料，也能降低三酸甘油酯。2 粒剛好約 1g ω-3。</dd>
+      <dt>不吃會怎樣</dt><dd>外食的 ω-6 偏高，ω-6 和 ω-3 比例失衡會讓發炎持續；健管又要少油，從食物補 ω-3 更困難。</dd>
+      <dt>時機邏輯</dt><dd>跟有油脂的餐一起吃（蛋黃、魚肉），才會分泌膽汁幫助吸收。早晚分開吃，也比較不會有魚腥味的嗝。</dd></dl>
+      <p class="ev"><b>證據：強</b>（降三酸甘油酯）。⚠️ 服用抗凝血藥的人要先問醫師。</p></article>
+
+    <article class="card" style="--c:var(--fire)"><div class="top"><h3>強效 C 營養片</h3><span class="tier t2">重要</span></div>
+      <span class="dose">2 顆/日 · 早餐、晚餐各 1 顆</span>
+      <dl><dt>角色</dt><dd>修補和抗氧化：合成膠原蛋白（皮膚、血管、關節）、還原維生素 E、支援免疫。每顆 500mg，緩釋 8 小時。</dd>
+      <dt>不吃會怎樣</dt><dd>蛋白日沒有水果，減重期間又容易免疫下降、感冒。吃了蛋白質，沒有 C 也合成不了膠原蛋白。</dd>
+      <dt>時機邏輯</dt><dd>早晚各一顆，緩釋 8 小時，兩顆可以涵蓋約 16 小時。水溶性維生素存不住，分次吃比一次吃完有效。</dd></dl>
+      <p class="ev"><b>證據：強</b>（生理功能明確）。一天 1g 在安全範圍內。</p></article>
+
+    <article class="card" style="--c:var(--key)"><div class="top"><h3>雙效 B 群</h3><span class="tier t2">重要</span></div>
+      <span class="dose">3 顆/日 · 10、14、16 點各 1 顆</span>
+      <dl><dt>角色</dt><dd>點火裝置：B1、B2、B3、B6 等 8 種，負責把醣、脂肪、蛋白質轉成能量。雙層錠緩釋 8 小時。</dd>
+      <dt>不吃會怎樣</dt><dd>低熱量期間代謝效率變差，人容易疲倦、沒精神，執行起來就容易放棄。多數人健管期間不覺得特別累，營養品的支撐是原因之一。</dd>
+      <dt>時機邏輯</dt><dd>跟蛋白素一起放在白天餐間，因為代謝胺基酸需要 B6，白天也是活動量最大的時候。晚上不吃。尿液變黃是 B2 的顏色，屬於正常現象。</dd></dl>
+      <p class="ev"><b>證據：中。</b>補足缺乏有效；已經足夠的人再多吃，不會額外提神。</p></article>
+
+    <article class="card" style="--c:var(--gut)"><div class="top"><h3>纖維嚼片</h3><span class="tier t1">核心</span></div>
+      <span class="dose">2 顆/日 · 早餐、晚餐前，各配 500cc 水</span>
+      <dl><dt>角色</dt><dd>掃把加海綿：13 種植物纖維，包含水溶性和非水溶性。增加糞便體積，也是好菌的飼料。</dd>
+      <dt>不吃會怎樣</dt><dd>蛋白日沒有蔬菜，連續三天後開始便祕。腸道排不乾淨，「清腸」這一步就做不到。</dd>
+      <dt>時機邏輯</dt><dd>飯前吃，吸水膨脹後先占胃，增加飽足感，也讓餐後血糖比較平。一定要配大量水，喝太少反而更便祕。</dd></dl>
+      <p class="ev"><b>證據：強</b>（纖維和水能改善便祕）。產品宣稱一錠約等於一碟蔬菜的纖維，但蛋白日的纖維總量仍然偏低。</p></article>
+
+    <article class="card" style="--c:var(--gut)"><div class="top"><h3>益生菌 · 易孅菌</h3><span class="tier t3">輔助</span></div>
+      <span class="dose">準備日 易孅菌 2 顆×3 · W1 蛋白日 益生菌 1 條×3 · 之後 易孅菌 1 顆/日</span>
+      <dl><dt>角色</dt><dd>好菌移民和代謝信號員。強效複合益生菌每包 63 億 5 種菌株，加上菊糖；易孅菌是後生元 CECT8145（不活的菌體），加上 B2、B6。</dd>
+      <dt>不吃會怎樣</dt><dd>飲食突然轉成高蛋白、零蔬果，菌相容易失衡，出現脹氣和排便問題。對減重結果的影響是三組裡最小的。</dd>
+      <dt>時機邏輯</dt><dd>活菌在飯前空腹配 500cc 水吃：胃裡食物少、胃酸被稀釋，菌比較快通過胃。後生元不怕胃酸，之後每天隨早餐 1 顆維持。</dd></dl>
+      <p class="ev"><b>證據：弱到中。</b>效果依菌株而不同；CECT8145 有小型人體研究顯示腰圍小幅下降。短期大量「清腸」的證據有限。</p></article>
+
+    <article class="card" style="--c:var(--fire);grid-column:span 1"><div class="top"><h3>綠茶素膠囊</h3><span class="tier t3">輔助</span></div>
+      <span class="dose">3 顆/日 · 隨三餐</span>
+      <dl><dt>角色</dt><dd>防鏽劑：濃縮兒茶素（EGCG）加上茶黃質，負責抗氧化，也有輕微幫助脂肪氧化的效果，並去除多餘的咖啡因。</dd>
+      <dt>不吃會怎樣</dt><dd>少了一部分抗氧化支援，但對減重結果的影響不大。這是用來補償八戒裡「無茶」的替代品。</dd>
+      <dt>時機邏輯</dt><dd>一定要隨餐吃，不能空腹。高劑量綠茶萃取物空腹服用有肝損傷的個案報告；EFSA 2018 指出，每天 ≥800mg EGCG 會讓肝指數上升。</dd></dl>
+      <p class="ev"><b>證據：燃脂效果小。</b>❗ 肝功能異常的人要先問醫師。</p></article>
+
+  </div>
+</section>
+<style>
+.safe{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.safe>div{background:var(--warn-bg);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.safe h3{font-size:16px;color:var(--warn)}
+.safe ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.src{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;line-height:1.8}
+@media (max-width:700px){.safe{grid-template-columns:1fr}}
+</style>
+
+<section class="sec" id="safe">
+  <div class="sec-head">
+    <div class="eyebrow">讓 45 天可以持續下去</div>
+    <h2>三條安全原則</h2>
+  </div>
+  <div class="safe">
+    <div><h3>這些人請先問醫師再開始</h3><ul>
+      <li>腎臟病：一天 85–118g 蛋白質會增加腎臟負擔</li>
+      <li>痛風：高蛋白飲食可能讓尿酸上升</li>
+      <li>使用降血糖藥或胰島素：蛋白日有低血糖風險</li>
+      <li>服用抗凝血藥：魚油可能加強藥效</li>
+      <li>肝功能異常：綠茶素要特別小心</li>
+      <li>懷孕或哺乳期間</li></ul></div>
+    <div><h3>頭痛、疲倦，不一定是「好轉反應」</h3><ul>
+      <li>低醣初期肝醣會釋出大量水分，鈉也跟著流失，容易頭痛、無力。目前沒有醫學證據支持這是「排毒」</li>
+      <li>處理方式：水喝足、鹽照常吃（不要刻意更少鹽）、鈣鎂片按時吃</li>
+      <li>症狀持續或加重時，告訴健管師，必要時就醫</li></ul></div>
+  </div>
+  <div class="read">
+    <div><b>原則 1：隨餐的就隨餐吃</b>綠茶素、魚油、DX 都不要空腹吃，對胃和肝都比較安全。</div>
+    <div><b>原則 2：水是第十種營養品</b>纖維片、鈣片、蛋白素都要配水，菜單上的 500cc 和 300cc 是配方的一部分，不能省。</div>
+    <div><b>原則 3：預算有限時，先顧核心</b>蛋白素、DX、鈣片、纖維片補的是菜單本身的缺口，這四樣不能省；其他可以依個人情況調整。</div>
+  </div>
+</section>
+
+<footer class="src">
+  <b>參考文獻</b>　Keys A, et al. <i>The Biology of Human Starvation</i>（明尼蘇達飢餓實驗），1950｜Sumithran P, et al. Long-term persistence of hormonal adaptations to weight loss. <i>NEJM</i> 2011｜EFSA Panel. Scientific opinion on the safety of green tea catechins. <i>EFSA Journal</i> 2018｜Pedret A, et al. Effects of daily consumption of the probiotic <i>Bifidobacterium animalis</i> subsp. <i>lactis</i> CECT 8145 on anthropometric adiposity biomarkers. <i>Int J Obes</i> 2019｜衛生福利部《食物代換表》與國民營養健康狀況變遷調查｜各產品營養標示。<br>
+  蛋白質克數是用食物代換表估算的，個別產品以實際標示為準。這份整理是營養教育內容，不能取代醫師診斷。
+</footer>
+
+<div id="tip" role="tooltip"></div>
+<script>
+(function(){
+  // ---- MAR matrix ----
+  var slots=[["07:30","早餐前"],["08:00","早餐"],["10:00","餐間"],["12:00","午餐"],["14:00","餐間"],["16:00","餐間"],["17:30","晚餐前"],["18:00","晚餐"]];
+  var rows=[
+    {g:"建材組",n:"蛋白素",u:"匙",c:"build",d:[0,1,1,1,1,1,0,1],why:"少量多次讓胺基酸不中斷，每次搭 300cc 水撐住胃"},
+    {g:"鑰匙組",n:"DX",u:"組",c:"key",d:[0,1,0,1,0,0,0,1],why:"隨餐吃，靠食物油脂吸收脂溶性維生素；分三餐讓水溶性維生素全天都有"},
+    {n:"雙效 B 群",u:"顆",c:"key",d:[0,0,1,0,1,1,0,0],why:"白天跟蛋白素一起吃，代謝胺基酸和脂肪都需要它；晚上不吃"},
+    {n:"加美 D 鈣片",u:"錠",c:"key",d:[0,0,2,0,2,2,0,0],why:"分三次吃，單次量少吸收率高；避開正餐的礦物質和纖維"},
+    {g:"滅火組",n:"魚油",u:"粒",c:"fire",d:[0,1,0,0,0,0,0,1],why:"脂溶性，搭配蛋黃或肉的油脂才吸收得好；早晚分開吃比較不會有魚腥嗝"},
+    {n:"強效 C",u:"顆",c:"fire",d:[0,1,0,0,0,0,0,1],why:"8 小時緩釋 × 2，涵蓋白天到入睡前"},
+    {n:"綠茶素",u:"顆",c:"fire",d:[0,1,0,1,0,0,0,1],why:"一定要隨餐，避免空腹高劑量對肝的風險"},
+    {g:"腸道組",n:"纖維片",u:"顆",c:"gut",d:[1,0,0,0,0,0,1,0],pre:true,why:"飯前吃加 500cc 水，先墊胃、讓餐後血糖平穩、預防便祕"},
+    {n:"易孅菌",u:"顆",c:"gut",d:[0,1,0,0,0,0,0,0],why:"後生元不怕胃酸，每天隨早餐 1 顆維持"}
+  ];
+  var h='<thead><tr><th style="text-align:left">品項</th>'+slots.map(function(s){return '<th>'+s[0]+'<small>'+s[1]+'</small></th>'}).join('')+'<th>每日</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    if(r.g) h+='<tr class="grp"><th colspan="'+(slots.length+2)+'">'+r.g+'</th></tr>';
+    var tot=r.d.reduce(function(a,b){return a+b},0);
+    h+='<tr><th><span class="chip c-'+r.c+'">'+r.n+'</span></th>';
+    r.d.forEach(function(v,i){
+      if(!v){h+='<td></td>';return}
+      var dots='';for(var k=0;k<v;k++)dots+='<i></i>';
+      h+='<td><span class="dots'+(r.pre?' pre':'')+'" tabindex="0" style="--c:var(--'+r.c+')" data-tip="'+slots[i][0]+' '+slots[i][1]+'｜'+r.n+' '+v+' '+r.u+'。'+r.why+'">'+dots+'</span></td>';
+    });
+    h+='<td class="tot">'+tot+' '+r.u+'</td></tr>';
+  });
+  h+='<tr class="grp"><th colspan="'+(slots.length+2)+'">水（cc）</th></tr><tr><th>水</th>';
+  var w=[500,300,300,300,300,300,500,300];
+  w.forEach(function(v){h+='<td class="num" style="color:var(--muted);font-size:12.5px">'+v+'</td>'});
+  h+='<td class="tot">2800</td></tr></tbody>';
+  document.getElementById('marT').innerHTML=h;
+
+  // ---- protein columns (蛋白日) ----
+  var P=[[8,7],[8,0],[8,15],[8,0],[8,0],[8,15]], T=["08 早餐","10 餐間","12 午餐","14 餐間","16 餐間","18 晚餐"], max=25, H=160;
+  var pc=document.getElementById('pcols'), ph='<div class="yax">';
+  [0,10,20].forEach(function(v){ph+='<span style="bottom:'+(v/max*H)+'px">'+v+'</span>'});
+  ph+='</div>';
+  [10,20].forEach(function(v){ph+='<div class="grid-l" style="bottom:'+(v/max*H)+'px"></div>'});
+  P.forEach(function(p,i){
+    var t=p[0]+p[1];
+    ph+='<div class="col" tabindex="0" data-tip="'+T[i]+'｜蛋白素 '+p[0]+'g'+(p[1]?' ＋ 原形食物 '+p[1]+'g':'')+' ＝ '+t+'g">'+
+      '<span class="seg" style="height:'+(p[0]/max*H)+'px;background:var(--build)"></span>'+
+      (p[1]?'<span class="seg" style="height:'+(p[1]/max*H-2)+'px;background:var(--muted)"></span>':'')+
+      '<span class="lab">'+t+'</span></div>';
+  });
+  pc.innerHTML=ph;
+
+  // ---- day-type totals ----
+  var D=[["蛋白日",48,37,"var(--d-pro)"],["纖體日",48,39,"var(--d-slim)"],["新陳代謝日",48,70,"var(--d-meta)"]], M=130;
+  var hb='';
+  D.forEach(function(d){
+    var t=d[1]+d[2];
+    hb+='<div class="hb" tabindex="0" data-tip="'+d[0]+'｜蛋白素 '+d[1]+'g ＋ 食物約 '+d[2]+'g ≈ '+t+'g"><span>'+d[0]+'</span><div class="tr">'+
+      '<div class="band" style="left:'+(77/M*100)+'%;width:'+((105-77)/M*100)+'%"></div>'+
+      '<div class="fill" style="position:relative;width:'+(t/M*100)+'%"><i style="width:'+(d[1]/t*100)+'%;background:var(--build)"></i><i style="flex:1;background:var(--muted);border-radius:0 4px 4px 0"></i></div>'+
+      '</div><span class="v">≈'+t+'g</span></div>';
+  });
+  document.getElementById('hbars').innerHTML=hb;
+
+  // ---- 45-day strip ----
+  var days=[].concat(["prep","prep","prep","pro","pro","pro","slim","slim","slim","slim"]);
+  for(var k=0;k<3;k++)days=days.concat(["pro","slim","slim","slim","slim","slim","slim"]);
+  for(k=0;k<2;k++)days=days.concat(["pro","meta","meta","meta","meta","meta","meta"]);
+  var nm={prep:"準備日",pro:"蛋白日",slim:"纖體日",meta:"新陳代謝日"};
+  document.getElementById('strip').innerHTML=days.map(function(d,i){return '<i class="dt-'+d+'" tabindex="0" data-tip="第 '+(i+1)+' 天｜'+nm[d]+'"></i>'}).join('');
+
+  // ---- tooltip ----
+  var tip=document.getElementById('tip');
+  function show(e){var t=e.target.closest('[data-tip]');if(!t){tip.classList.remove('on');return}
+    tip.textContent=t.getAttribute('data-tip');tip.classList.add('on');
+    var r=t.getBoundingClientRect(),x=Math.min(window.innerWidth-tip.offsetWidth-8,Math.max(8,r.left+r.width/2-tip.offsetWidth/2)),y=r.top-tip.offsetHeight-8;
+    if(y<8)y=r.bottom+8;tip.style.left=x+'px';tip.style.top=y+'px'}
+  document.addEventListener('pointerover',show);document.addEventListener('focusin',show);
+  document.addEventListener('pointerout',function(e){if(e.target.closest('[data-tip]'))tip.classList.remove('on')});
+  document.addEventListener('focusout',function(){tip.classList.remove('on')});
+  window.addEventListener('scroll',function(){tip.classList.remove('on')},{passive:true});
+})();
+</script>
+</div>
+
+</body>
+</html>
