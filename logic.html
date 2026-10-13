@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="從 13 條不可再拆的生理公理出發，逐步推導健管 45 天每種營養品的必要性、份量與時間順序。">
+<meta name="theme-color" content="#f3f6f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111613" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="營養品地圖">
+<meta property="og:title" content="營養品第一性原理">
+<meta property="og:description" content="從公理推到份量與時間，每一步都拆到最細。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2318221d'/%3E%3Crect x='14' y='26' width='36' height='14' rx='7' fill='%23eda100'/%3E%3Crect x='14' y='26' width='18' height='14' rx='7' fill='%231baf7a'/%3E%3C/svg%3E">
+<style>html{color-scheme:light}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>營養品第一性原理</title>
+<style>
+/* Layout: 一張「人體一日給藥紀錄表」— 左側時間脊柱貫穿全頁，四個工班色碼貫穿所有圖 */
+:root{
+  --bg:#f3f6f2; --card:#ffffff; --ink:#18221d; --muted:#56635b; --line:#d7dfd8; --soft:#e8eee8;
+  --build:#2a78d6; --fire:#eb6834; --gut:#1baf7a; --key:#eda100;
+  --d-prep:#77716f; --d-pro:#b3261e; --d-slim:#3f6b2a; --d-meta:#22407a;
+  --warn:#9a4b00; --warn-bg:#fff3e2;
+  --f-display:"Noto Serif TC","Songti TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#111613; --card:#19201c; --ink:#e7ede9; --muted:#9eaaa2; --line:#2b352f; --soft:#212a25;
+  --build:#3987e5; --fire:#d95926; --gut:#199e70; --key:#c98500;
+  --d-prep:#9a9491; --d-pro:#e0605a; --d-slim:#79a85f; --d-meta:#7c9be0;
+  --warn:#ffb465; --warn-bg:#2b2116; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111613; --card:#19201c; --ink:#e7ede9; --muted:#9eaaa2; --line:#2b352f; --soft:#212a25;
+  --build:#3987e5; --fire:#d95926; --gut:#199e70; --key:#c98500;
+  --d-prep:#9a9491; --d-pro:#e0605a; --d-slim:#79a85f; --d-meta:#7c9be0;
+  --warn:#ffb465; --warn-bg:#2b2116; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15.5px;line-height:1.75}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:flex;flex-direction:column;gap:64px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.3}
+h1{font-size:clamp(30px,5.4vw,52px);font-weight:900;letter-spacing:.01em}
+h2{font-size:clamp(22px,3.2vw,30px);font-weight:900}
+h3{font-size:18px;font-weight:600}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sec{display:flex;flex-direction:column;gap:20px}
+.sec-head{display:flex;flex-direction:column;gap:8px}
+.lead{color:var(--muted);font-size:16px}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;line-height:1;padding:6px 9px;border-radius:4px;background:var(--soft);white-space:nowrap}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c,var(--muted));flex:none}
+.c-build{--c:var(--build)} .c-fire{--c:var(--fire)} .c-gut{--c:var(--gut)} .c-key{--c:var(--key)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:end}
+.hero>*{min-width:0}
+.hero p{font-size:17px;margin-top:16px}
+.formula{border:1.5px solid var(--ink);padding:20px;display:flex;flex-direction:column;gap:14px;background:var(--card)}
+.formula .row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.formula b{font-family:var(--f-display);font-size:20px}
+.formula .op{font-family:var(--f-mono);color:var(--muted)}
+.formula .res{border-top:1px solid var(--line);padding-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1.5px solid var(--ink);border-bottom:1px solid var(--line)}
+.stat{padding:16px 14px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line);min-width:0}
+.stat:last-child{border-right:0}
+.stat .v{font-family:var(--f-mono);font-size:28px;line-height:1.1}
+.stat .v small{font-size:14px;color:var(--muted)}
+.stat .k{font-size:13px;color:var(--muted);line-height:1.5}
+
+/* teams legend */
+.teams{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.team{background:var(--card);border-top:4px solid var(--c);padding:14px 14px 16px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.team h3{font-size:17px}
+.team .who{font-size:13px;color:var(--muted)}
+.team p{font-size:14px}
+
+/* flow: 腸→肝→血管→細胞 */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.station{background:var(--card);border:1px solid var(--line);padding:16px;display:flex;flex-direction:column;gap:10px;position:relative;min-width:0}
+.station+.station{border-left:0}
+.station .step{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+.station h3{font-size:20px}
+.station .job{font-size:14px;color:var(--muted)}
+.station:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:18px;width:24px;height:24px;border-radius:50%;background:var(--ink);color:var(--bg);font-size:13px;display:grid;place-items:center;z-index:1}
+.station ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.station li{font-size:14px;line-height:1.55}
+.station li .chip{margin-bottom:3px}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .teams{grid-template-columns:repeat(2,1fr)}
+  .flow{grid-template-columns:1fr 1fr}
+  .station:nth-child(3){border-left:1px solid var(--line)}
+  .station:nth-child(n+3){border-top:0}
+  .station:nth-child(2)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-13px}
+}
+@media (max-width:480px){
+  .teams,.flow{grid-template-columns:1fr}
+  .station{border-left:1px solid var(--line)!important}
+  .station+.station{border-top:0}
+  .station:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-13px;margin-left:-12px}
+}
+</style><style>
+/* day spine */
+.day{display:flex;flex-direction:column;position:relative}
+.slot{display:grid;grid-template-columns:86px 1fr;gap:0 22px;position:relative}
+.slot>*{min-width:0}
+.slot .t{font-family:var(--f-mono);font-size:20px;padding-top:14px;text-align:right;position:relative}
+.slot .t small{display:block;font-size:12px;color:var(--muted);font-family:var(--f-body)}
+.slot .body{border-left:2px solid var(--line);padding:14px 0 26px 24px;position:relative;display:flex;flex-direction:column;gap:10px}
+.slot .body::before{content:"";position:absolute;left:-8px;top:20px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.slot.meal .body::before{background:var(--ink)}
+.slot.quiet .body::before{border-style:dashed}
+.slot h3{font-size:19px}
+.state{font-size:14px;color:var(--muted)}
+.state b{color:var(--ink);font-weight:500}
+.why{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}
+.why li{background:var(--card);border:1px solid var(--line);padding:10px 12px;font-size:14px;line-height:1.6}
+.why li b{font-weight:700}
+.food{font-size:13px;color:var(--muted)}
+.food em{font-style:normal;color:var(--ink);border-bottom:1px dotted var(--muted)}
+@media (max-width:560px){.slot{grid-template-columns:56px 1fr;gap:0 14px}.slot .t{font-size:16px}.slot .body{padding-left:18px}}
+
+/* MAR matrix */
+.mar-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line)}
+table.mar{border-collapse:collapse;width:100%;min-width:720px;font-size:14px}
+.mar th,.mar td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
+.mar thead th{font-family:var(--f-mono);font-weight:500;font-size:12.5px;color:var(--muted);background:var(--soft);position:sticky;top:0}
+.mar thead th small{display:block;font-family:var(--f-body);font-size:11px}
+.mar tbody th{text-align:left;font-weight:500;white-space:nowrap}
+.mar tbody th .chip{background:transparent;padding:0;font-size:14px}
+.mar td.tot{font-family:var(--f-mono);font-weight:500;border-left:1px solid var(--line)}
+.dots{display:inline-flex;gap:3px;flex-wrap:wrap;justify-content:center;max-width:52px;padding:4px;border-radius:4px;cursor:default}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--c);display:block}
+.dots.pre i{background:transparent;border:2px solid var(--c)}
+.dots:hover,.dots:focus-visible{outline:2px solid var(--ink);outline-offset:1px}
+.mar tr.grp td,.mar tr.grp th{background:var(--soft);font-size:12px;color:var(--muted);text-align:left;padding:5px 8px;font-weight:500}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);align-items:center}
+.legend .k{display:inline-flex;align-items:center;gap:6px}
+.legend .s{width:10px;height:10px;border-radius:50%;background:var(--muted)}
+.legend .s.o{background:transparent;border:2px solid var(--muted)}
+.read{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.read>div{border-top:2px solid var(--ink);padding-top:10px;font-size:14px;min-width:0}
+.read b{display:block;font-family:var(--f-display);font-size:16px;margin-bottom:4px}
+@media (max-width:820px){.read{grid-template-columns:1fr}}
+#tip{position:fixed;z-index:20;pointer-events:none;max-width:260px;background:var(--ink);color:var(--bg);font-size:13px;line-height:1.5;padding:8px 10px;border-radius:4px;opacity:0;transition:opacity .12s}
+#tip.on{opacity:1}
+@media (prefers-reduced-motion:reduce){#tip{transition:none}}
+</style><style>
+.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-20px;padding:8px 20px;margin-block:-32px}
+.toc::-webkit-scrollbar{display:none}
+.toc a{flex:none;color:var(--ink);text-decoration:none;font-size:14px;padding:8px 12px;border-radius:999px;min-height:36px;display:inline-flex;align-items:center}
+.toc a:hover,.toc a:focus-visible{background:var(--soft);outline:none}
+.sec{scroll-margin-top:64px}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style><style>
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}
+.two>*{min-width:0}
+.panel{background:var(--card);border:1px solid var(--line);padding:18px;display:flex;flex-direction:column;gap:12px}
+.panel h3{font-size:16px}
+.cols{display:grid;grid-template-columns:28px repeat(6,1fr);gap:0 8px;align-items:end;height:200px;position:relative}
+.yax{position:relative;height:160px;align-self:end;font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.yax span{position:absolute;right:0;transform:translateY(50%)}
+.col{display:flex;flex-direction:column-reverse;gap:2px;align-self:end;cursor:default}
+.col .seg{border-radius:0}
+.col .seg:last-child{border-radius:4px 4px 0 0}
+.col .lab{font-family:var(--f-mono);font-size:12px;text-align:center;color:var(--ink)}
+.xax{display:grid;grid-template-columns:28px repeat(6,1fr);gap:0 8px;font-family:var(--f-mono);font-size:11.5px;color:var(--muted);text-align:center;border-top:1px solid var(--muted);padding-top:4px}
+.grid-l{position:absolute;left:36px;right:0;border-top:1px dashed var(--line)}
+.hbars{display:flex;flex-direction:column;gap:12px}
+.hb{display:grid;grid-template-columns:92px 1fr 48px;gap:10px;align-items:center;font-size:13.5px}
+.hb .tr{position:relative;height:18px}
+.hb .fill{height:100%;border-radius:0 4px 4px 0;display:flex;gap:2px}
+.hb .fill i{display:block;height:100%}
+.band{position:absolute;top:-6px;bottom:-6px;background:var(--soft);border-left:1px dashed var(--muted);border-right:1px dashed var(--muted)}
+.hb .v{font-family:var(--f-mono);text-align:right}
+.note{font-size:12.5px;color:var(--muted);line-height:1.6}
+/* 45-day strip */
+.strip{display:grid;grid-template-columns:repeat(45,1fr);gap:2px}
+.strip i{height:30px;display:block;border-radius:2px}
+.strip i.w{box-shadow:inset 0 -3px 0 var(--ink)}
+.dt-prep{background:var(--d-prep)} .dt-pro{background:var(--d-pro)} .dt-slim{background:var(--d-slim)} .dt-meta{background:var(--d-meta)}
+.phase{display:grid;grid-template-columns:10fr 21fr 14fr;gap:6px;font-size:12.5px;color:var(--muted)}
+.phase div{border-top:1px solid var(--ink);padding-top:4px;min-width:0}
+.script{width:100%;border-collapse:collapse;font-size:14px;min-width:620px}
+.script th,.script td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
+.script thead th{font-size:12.5px;color:var(--muted);font-weight:500;background:var(--soft)}
+.script td.on{font-weight:500}
+.script .tag{display:inline-block;font-size:12px;padding:1px 7px;border-radius:3px;color:#fff;margin-right:4px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+@media (max-width:560px){.strip i{height:22px}.strip{gap:1px}}
+</style><style>
+.gap{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--line)}
+.gap>div{padding:12px 16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;min-width:0}
+.gap>div:nth-child(odd){border-right:1px solid var(--line)}
+.gap .h{background:var(--soft);font-size:12.5px;color:var(--muted)}
+.gap b{font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);padding:16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .top{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.card h3{font-size:18px}
+.card .dose{font-family:var(--f-mono);font-size:12.5px;color:var(--muted)}
+.card .meta{font-size:12.5px;color:var(--muted);line-height:1.55}
+.card dl{margin:0;display:flex;flex-direction:column;gap:8px}
+.card dt{font-size:12px;letter-spacing:.08em;color:var(--muted)}
+.card dd{margin:0;font-size:14px;line-height:1.6}
+.tier{font-size:12px;padding:3px 8px;border-radius:3px;border:1px solid currentColor;white-space:nowrap}
+.t1{color:var(--ink);font-weight:700}
+.t2{color:var(--muted)}
+.t3{color:var(--muted);border-style:dashed}
+.ev{font-size:12.5px;border-top:1px dashed var(--line);padding-top:8px;color:var(--muted)}
+.ev b{color:var(--ink);font-weight:500}
+@media (max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.cards,.gap{grid-template-columns:1fr}.gap>div:nth-child(odd){border-right:0}.gap .h:nth-child(2){display:none}}
+</style><style>
+.safe{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.safe>div{background:var(--warn-bg);padding:16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.safe h3{font-size:16px;color:var(--warn)}
+.safe ul{margin:0;padding-left:18px;font-size:14px;display:flex;flex-direction:column;gap:4px}
+.src{font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;line-height:1.8}
+@media (max-width:700px){.safe{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<style>
+/* 邏輯頁專用：公理標籤、推導鏈、結論框 */
+.ax{display:inline-flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:11.5px;line-height:1;padding:4px 6px;border-radius:3px;background:var(--ink);color:var(--bg);margin-right:4px;vertical-align:1px;white-space:nowrap;text-decoration:none}
+.ax.s{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.axioms{display:grid;grid-template-columns:repeat(2,1fr);gap:0;background:var(--card);border:1px solid var(--line)}
+.axioms>div{display:grid;grid-template-columns:44px 1fr;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);min-width:0;scroll-margin-top:64px}
+.axioms>div:nth-child(odd){border-right:1px solid var(--line)}
+.axioms .id{font-family:var(--f-mono);font-size:14px;font-weight:500}
+.axioms b{display:block;font-size:15px}
+.axioms span.d{font-size:13.5px;color:var(--muted);line-height:1.6}
+.axioms .kind{font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.chain{margin:0;padding:0;list-style:none;counter-reset:st;display:flex;flex-direction:column}
+.chain>li{counter-increment:st;display:grid;grid-template-columns:40px 1fr;gap:12px;position:relative;padding-bottom:14px}
+.chain>li::before{content:counter(st);font-family:var(--f-mono);font-size:13px;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--c,var(--ink));display:grid;place-items:center;background:var(--bg);z-index:1}
+.chain>li::after{content:"";position:absolute;left:14px;top:28px;bottom:0;width:1.5px;background:var(--line)}
+.chain>li:last-child::after{display:none}
+.chain>li>div{min-width:0;font-size:14.5px;line-height:1.7;padding-top:2px}
+.chain .then{color:var(--muted)}
+.chain .q{font-family:var(--f-mono);font-size:13px;background:var(--soft);padding:1px 6px;border-radius:3px;white-space:nowrap}
+.verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid var(--c,var(--ink));background:var(--card)}
+.verdict>div{padding:12px 14px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0}
+.verdict>div:last-child{border-right:0}
+.verdict .k{font-size:11.5px;letter-spacing:.1em;color:var(--muted)}
+.verdict .v{font-size:14.5px;font-weight:500;line-height:1.6}
+.trade{font-size:13.5px;background:var(--warn-bg);padding:10px 14px;line-height:1.65}
+.trade b{color:var(--warn)}
+.prod{display:flex;flex-direction:column;gap:14px;padding-top:28px;border-top:1.5px solid var(--ink);scroll-margin-top:64px}
+.prod .ph{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.prod .ph h3{font-size:22px;font-weight:900}
+.prod .ph .rank{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.prod .q1{font-size:15px;color:var(--muted)}
+.tree{display:flex;flex-direction:column;gap:0}
+.node{background:var(--card);border:1px solid var(--line);padding:12px 16px;display:flex;flex-direction:column;gap:4px}
+.node .lv{font-family:var(--f-mono);font-size:11.5px;color:var(--muted);letter-spacing:.08em}
+.node b{font-size:16px}
+.node p{font-size:14px;color:var(--muted)}
+.arrow{align-self:center;font-family:var(--f-mono);color:var(--muted);font-size:13px;padding:4px 0}
+.branch{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.branch>.node{min-width:0}
+.node.goal{border:1.5px solid var(--ink)}
+.node.key{border:1.5px solid var(--ink);background:var(--soft)}
+.dens{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.dens th,.dens td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left}
+.dens thead th{font-size:12.5px;color:var(--muted);font-weight:500;background:var(--soft)}
+.dens td.n{font-family:var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.bar{height:10px;border-radius:0 3px 3px 0;background:var(--build);display:block}
+.score{width:100%;border-collapse:collapse;font-size:14px;min-width:680px}
+.score th,.score td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
+.score thead th{font-size:12px;color:var(--muted);font-weight:500;background:var(--soft);vertical-align:bottom}
+.score tbody th{text-align:left;font-weight:500;white-space:nowrap}
+.score td.t{font-family:var(--f-mono);font-weight:500}
+.pips{display:inline-flex;gap:3px}
+.pips i{width:9px;height:9px;border-radius:2px;background:var(--line);display:block}
+.pips i.on{background:var(--ink)}
+.tierline{display:flex;flex-direction:column;gap:6px}
+.tl{display:grid;grid-template-columns:110px 1fr 40px;gap:10px;align-items:center;font-size:13.5px}
+.tl .tr{height:16px;background:var(--soft);position:relative}
+.tl .f{position:absolute;left:0;top:0;bottom:0;border-radius:0 3px 3px 0}
+.tl .n{font-family:var(--f-mono);text-align:right}
+.cut{font-size:12px;color:var(--muted);border-top:1px dashed var(--muted);padding-top:2px;margin-top:2px}
+.backlink{font-size:14px;color:var(--ink)}
+@media (max-width:820px){.axioms{grid-template-columns:1fr}.axioms>div:nth-child(odd){border-right:0}.branch{grid-template-columns:1fr}.verdict{grid-template-columns:1fr}.verdict>div{border-right:0;border-bottom:1px solid var(--line)}.verdict>div:last-child{border-bottom:0}}
+@media (max-width:480px){.tl{grid-template-columns:84px 1fr 34px}}
+</style>
+
+<div class="wrap">
+
+<header class="sec" style="gap:14px">
+  <div class="eyebrow">健管 45 天 · 第一性原理推導</div>
+  <h1>為什麼要吃、為什麼是這個量、為什麼在這個時間</h1>
+  <p style="font-size:17px">這一頁不引用「誰說的」，也不用「研究顯示有效」當結論。做法分三步：先列出 13 條不能再拆的事實（公理），再從營養學和行為上的目標出發往下推，最後讓每一種營養品的必要性、份量和時間順序，都只由前面已經成立的步驟推出來。每一步前面的黑色標籤，就是它用到的公理。</p>
+  <p class="backlink"><a href="index.html" style="color:inherit">← 回到營養品地圖（視覺總覽）</a></p>
+</header>
+
+<nav class="toc" aria-label="章節">
+  <a href="#axioms">公理</a><a href="#root">主幹推導</a><a href="#p-water">水</a><a href="#p-protein">蛋白素</a><a href="#p-fiber">纖維片</a><a href="#p-dx">DX</a><a href="#p-c">C</a><a href="#p-ca">鈣鎂 D</a><a href="#p-b">B 群</a><a href="#p-fish">魚油</a><a href="#p-gut">益生菌</a><a href="#p-tea">綠茶素</a><a href="#rank">必要性排序</a><a href="#clock">一天的順序</a><a href="#days">45 天的順序</a>
+</nav>
+
+<section class="sec" id="axioms">
+  <div class="sec-head">
+    <div class="eyebrow">第 0 層 · 不能再拆的事實</div>
+    <h2>13 條公理</h2>
+    <p class="lead">前 12 條是物理和生理事實，A13 是人的行為事實。後面所有推論都只用到這 13 條；凡是需要「研究證據」才能成立的地方，會另外標成取捨或限制，不會當作公理。</p>
+  </div>
+  <div class="axioms">
+    <div id="A1"><span class="id">A1</span><div><span class="kind">能量</span><b>能量守恆</b><span class="d">身體儲存的能量變少，唯一的途徑是一段時間內「吃進的」少於「消耗的」。</span></div></div>
+    <div id="A2"><span class="id">A2</span><div><span class="kind">原料</span><b>有些分子身體造不出來</b><span class="d">9 種必需胺基酸、大部分維生素、全部礦物質、ω-3 必需脂肪酸，只能從外面吃進來。</span></div></div>
+    <div id="A3"><span class="id">A3</span><div><span class="kind">反應</span><b>反應需要酵素，酵素需要輔因子</b><span class="d">體內每個化學反應都靠酵素，酵素本身是蛋白質；很多酵素還要配上維生素或礦物質才會動。</span></div></div>
+    <div id="A4"><span class="id">A4</span><div><span class="kind">原料</span><b>蛋白質不斷翻新，而且沒有倉庫</b><span class="d">成人每天分解並重建約 250–300g 蛋白質。脂肪和肝醣有專門的倉庫，胺基酸沒有；不夠時只能拆現有的蛋白質，主要是肌肉。</span></div></div>
+    <div id="A5"><span class="id">A5</span><div><span class="kind">能量</span><b>燃料有先後順序</b><span class="d">血糖和肝醣先用，脂肪後用。肝醣量很小（肝約 100g、肌肉約 400g），每克肝醣綁著約 3g 水。只要有醣進來，身體就先補肝醣。</span></div></div>
+    <div id="A6"><span class="id">A6</span><div><span class="kind">能量</span><b>血糖必須守住</b><span class="d">大腦和紅血球需要葡萄糖。醣不夠時，肝臟用胺基酸、甘油等原料自己製造葡萄糖（糖質新生）。</span></div></div>
+    <div id="A7"><span class="id">A7</span><div><span class="kind">吸收</span><b>油溶的東西要靠膽汁</b><span class="d">脂溶性分子（魚油、維生素 A、D、E、K、類胡蘿蔔素）要先被膽汁乳化才吸收得了，而膽汁是吃到含油脂的食物才會大量釋放。</span></div></div>
+    <div id="A8"><span class="id">A8</span><div><span class="kind">吸收</span><b>吸收有上限，水溶的存不住</b><span class="d">腸道的轉運蛋白數量有限，一次給越多，吸收的比例越低。水溶性維生素（B、C）多出來的會經腎臟排掉，體內存量小。</span></div></div>
+    <div id="A9"><span class="id">A9</span><div><span class="kind">腸道</span><b>腸菌吃我們消化不了的東西</b><span class="d">人體沒有分解纖維的酵素，纖維會原樣進到大腸，被約 38 兆隻細菌發酵。菌相的組成取決於它們吃到什麼。</span></div></div>
+    <div id="A10"><span class="id">A10</span><div><span class="kind">修復</span><b>代謝會產生廢料，發炎需要被關掉</b><span class="d">燃燒燃料必然產生自由基，要靠抗氧化系統中和。發炎是啟動修復的訊號；如果一直沒有被關掉，就變成慢性發炎。</span></div></div>
+    <div id="A11"><span class="id">A11</span><div><span class="kind">恆定</span><b>血中濃度優先於倉庫</b><span class="d">血鈣、血糖、血鈉要維持在很窄的範圍內。不夠時，身體會從倉庫（骨頭、肌肉）挖出來補，代價先由倉庫承擔，短期看不出症狀。</span></div></div>
+    <div id="A12"><span class="id">A12</span><div><span class="kind">介質</span><b>一切都在水裡發生</b><span class="d">反應、運輸、排泄都需要水。纖維要吸水才會作用；尿中溶質濃度越高，越容易析出結晶（結石）。</span></div></div>
+    <div id="A13"><span class="id">A13</span><div><span class="kind">行為</span><b>人的意志力有限</b><span class="d">餓到一個程度，自制力就會崩潰。規則越簡單、越能綁在已經在做的動作上，越容易被執行；能撐完全程，比一開始做得多完美更重要。</span></div></div>
+  </div>
+</section>
+
+<section class="sec" id="root">
+  <div class="sec-head">
+    <div class="eyebrow">第 1 層 · 主幹推導</div>
+    <h2>從目標推出「為什麼一定要有營養品」</h2>
+    <p class="lead">先不談任何產品，只問：要達成目標，身體需要哪些條件，這些條件同時成立時會撞上什麼限制。</p>
+  </div>
+  <div class="tree">
+    <div class="node goal"><span class="lv">目標</span><b>降低內臟脂肪和慢性發炎，45 天後不復胖</b></div>
+    <div class="arrow">↓ 拆成三個必要條件</div>
+    <div class="branch">
+      <div class="node"><span class="lv">條件 1 · <a class="ax" href="#A1">A1</a><a class="ax" href="#A5">A5</a></span><b>能量要有缺口</b><p>脂肪要變少，吃進的就要比消耗的少；而且要減少醣，身體才會從燒肝醣轉成燒脂肪。</p></div>
+      <div class="node"><span class="lv">條件 2 · <a class="ax" href="#A2">A2</a><a class="ax" href="#A3">A3</a><a class="ax" href="#A4">A4</a><a class="ax" href="#A10">A10</a></span><b>原料不能有缺口</b><p>修復發炎、燃燒脂肪、維持肌肉，每一步都要蛋白質、維生素和礦物質，這些身體又造不出來。</p></div>
+      <div class="node"><span class="lv">條件 3 · <a class="ax" href="#A13">A13</a></span><b>要撐得完 45 天</b><p>不能餓到失控，規則要簡單，吃的動作要能固定在每天的作息裡。</p></div>
+    </div>
+    <div class="arrow">↓ 條件 1 和條件 2 同時成立，會撞上一個衝突</div>
+    <div class="node key"><span class="lv">衝突</span><b>原形食物的熱量和營養是綁在一起的</b><p>吃一份食物，熱量和營養素是一起進來的。熱量砍到 40–70%，隨食物進來的營養素也只剩 40–70%，但條件 2 要求的需求量沒有跟著下降，燃燒脂肪和修復甚至需要更多。</p></div>
+    <div class="arrow">↓ 唯一的解法</div>
+    <div class="node key"><span class="lv">推論</span><b>每一卡熱量要帶進更多營養，也就是「營養密度」必須上升</b><p>熱量剩一半，營養密度就要加倍。原形食物裡，只有少數幾種（例如瘦肉）密度夠高，其他就需要幾乎沒有熱量、只有營養素的來源，也就是營養品。這是營養品在健管裡存在的根本理由。</p></div>
+    <div class="arrow">↓ 條件 3 再加上限制</div>
+    <div class="node"><span class="lv">限制</span><b>補法本身必須好執行</b><p>少量多次（避免餓到失控），每次都和喝水、吃飯這些固定動作綁在一起（避免忘記），種類和時間 45 天都不變（規則簡單）。這三點決定了下面的時間順序。</p></div>
+  </div>
+
+  <div class="mar-wrap"><table class="dens">
+    <thead><tr><th>以蛋白質為例：熱量中有多少比例來自蛋白質</th><th style="text-align:right">比例</th><th style="width:40%"></th></tr></thead>
+    <tbody>
+      <tr><td><b>健管需要的密度</b>：一天 90g 蛋白質 × 4 大卡 ÷ 800 大卡</td><td class="n">45%</td><td><span class="bar" style="width:45%;background:var(--ink)"></span></td></tr>
+      <tr><td>一般外食的平均</td><td class="n">≈15%</td><td><span class="bar" style="width:15%;background:var(--muted)"></span></td></tr>
+      <tr><td>白飯</td><td class="n">≈8%</td><td><span class="bar" style="width:8%;background:var(--muted)"></span></td></tr>
+      <tr><td>水煮蛋</td><td class="n">≈33%</td><td><span class="bar" style="width:33%;background:var(--muted)"></span></td></tr>
+      <tr><td>去皮雞胸</td><td class="n">≈75%</td><td><span class="bar" style="width:75%;background:var(--muted)"></span></td></tr>
+      <tr><td>蛋白素（8g 蛋白質 ÷ 38 大卡）</td><td class="n">≈84%</td><td><span class="bar" style="width:84%"></span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">需求的密度是一般飲食的 3 倍。只靠「少吃一點的一般飲食」做不到，必須換成密度高於 45% 的來源。維生素和礦物質也是同樣的算法：熱量剩 40%，需要的密度就是平常的 2.5 倍。</p>
+</section>
+
+<section class="sec" id="products">
+  <div class="sec-head">
+    <div class="eyebrow">第 2 層 · 逐項推導</div>
+    <h2>每一種營養品的完整邏輯鏈</h2>
+    <p class="lead">每一項都用同一個結構：這種營養素在身體裡做什麼 → 身體能不能自己造、能不能存 → 菜單給了多少 → 缺口多大 → 為什麼用這個產品補 → 為什麼是這個份量 → 為什麼是這個時間。最後的結論框只總結前面已經推出的東西。依必要性排序，排序方法在後面「必要性排序」一節。</p>
+  </div>
+
+  <article class="prod" id="p-water" style="--c:var(--ink)">
+    <div class="ph"><h3>0　水</h3><span class="rank">必要性 12/12 · 基礎，不算營養品</span></div>
+    <p class="q1">它不在營養品清單上，但下面每一條鏈都會用到它，所以放在第一個推。</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A12">A12</a>所有反應、血液運輸和腎臟排泄都在水中進行。</div></li>
+      <li><div><a class="ax" href="#A5">A5</a>醣減少後，身體先用掉肝醣；每用掉 1g 肝醣，約 3g 綁著的水會被釋放、排出。</div></li>
+      <li><div><span class="then">由此推出：</span>頭幾天大量排水，體重快速下降，但掉的是水，不是脂肪。</div></li>
+      <li><div><a class="ax" href="#A11">A11</a>醣少時胰島素下降，腎臟會排出更多鈉，水跟著鈉一起走。</div></li>
+      <li><div><span class="then">由此推出：</span>頭痛、疲倦、頭暈，最直接的解釋是水和鈉同時流失，不需要用「排毒」來解釋。</div></li>
+      <li><div><a class="ax" href="#A4">A4</a>蛋白質吃得多，代謝後產生的尿素就多，尿素要靠尿液排出，需要更多水。</div></li>
+      <li><div><a class="ax" href="#A12">A12</a>纖維沒有水就不會膨脹；尿中鈣濃度越高越容易結晶。這兩條讓纖維片和鈣片都必須搭配水。</div></li>
+      <li><div><a class="ax" href="#A13">A13</a>一次喝很多會想吐，也容易忘記喝；分成很多次，並且綁在每個進食點上，最不會漏。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">最高。其他營養品都要靠它才會作用</span></div><div><span class="k">份量</span><span class="v">體重 × 40cc，菜單合計 2.8–3.3L</span></div><div><span class="k">時間</span><span class="v">飯前 500cc ＋ 每次蛋白素配 300cc</span></div></div>
+  </article>
+
+  <article class="prod" id="p-protein" style="--c:var(--build)">
+    <div class="ph"><h3>1　優質蛋白素</h3><span class="rank">必要性 12/12 · 核心</span></div>
+    <p class="q1">要回答的問題：為什麼不能只吃肉？為什麼要分 6 次？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A4">A4</a>身體每天都在拆掉並重建蛋白質。大部分胺基酸會被回收，但每天仍有一部分被氧化消耗掉，只能從食物補回來。</div></li>
+      <li><div><a class="ax" href="#A2">A2</a>其中 9 種必需胺基酸身體造不出來；只要缺一種，用到它的蛋白質就合成不了。</div></li>
+      <li><div><a class="ax" href="#A4">A4</a>胺基酸沒有倉庫。今天吃不夠，身體不會從「存貨」領，而是拆掉現有的蛋白質，最大宗就是肌肉。</div></li>
+      <li><div><a class="ax" href="#A1">A1</a><a class="ax" href="#A6">A6</a>能量有缺口時，血糖要靠糖質新生來維持，原料之一就是胺基酸，等於多了一個消耗胺基酸的出口。</div></li>
+      <li><div><span class="then">由 3＋4 推出：</span>減重期間的蛋白質需求比平常高，大約每公斤體重 <span class="q">1.2–1.5g</span>。70kg 的人約需 <span class="q">84–105g</span>。</div></li>
+      <li><div><span class="then">菜單的供應：</span>蛋白日的原形食物只有 1 顆蛋加 150g 瘦肉，約 <span class="q">37g</span>。缺口約 <span class="q">47–68g</span>。</div></li>
+      <li><div><a class="ax" href="#A1">A1</a>這個缺口不能用多吃肉來補：多吃 250g 肉，會多出約 300–400 大卡和額外的脂肪，就破壞了條件 1 的能量缺口。所以補位者必須「每克蛋白質的熱量最低」。蛋白素每克蛋白質約 4.75 大卡，接近純蛋白質的 4 大卡。</div></li>
+      <li><div><a class="ax" href="#A2">A2</a>還要必需胺基酸齊全。單一植物蛋白常缺離胺酸或甲硫胺酸，大豆、小麥、豌豆三種組合可以互補，PDCAAS 達到 1.0（滿分）。</div></li>
+      <li><div><a class="ax" href="#A4">A4</a>份量：6 匙 × 8g ＝ <span class="q">48g</span>，剛好落在缺口範圍內，加上食物後約 85g。</div></li>
+      <li><div><a class="ax" href="#A4">A4</a><a class="ax" href="#A8">A8</a>時間：沒有倉庫，一次吃太多，超過當下合成所需的部分會被燒掉；分次吃，血中胺基酸就不會中斷。液體蛋白從胃排空約 1–2 小時，所以每 2 小時接一次。</div></li>
+      <li><div><a class="ax" href="#A13">A13</a>每次配 300cc 水，胃有體積、血糖平穩，飢餓感被切成很多小段，不會累積到失控。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">最高。拿掉後減掉的就是肌肉，代謝下降，之後復胖</span></div><div><span class="k">份量</span><span class="v">6 匙 ≈ 48g 蛋白質 / 約 230 大卡</span></div><div><span class="k">時間</span><span class="v">08、10、12、14、16、18 點，每 2 小時一次</span></div></div>
+  </article>
+
+  <article class="prod" id="p-fiber" style="--c:var(--gut)">
+    <div class="ph"><h3>2　纖維嚼片</h3><span class="rank">必要性 11/12 · 核心</span></div>
+    <p class="q1">要回答的問題：為什麼蛋白日特別需要？為什麼一定在飯前、一定配 500cc？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A9">A9</a>人體沒有分解纖維的酵素，纖維會原樣抵達大腸。</div></li>
+      <li><div><span class="then">在大腸裡分兩條路：</span>不溶性纖維不會被分解，吸水後撐大糞便體積、推動腸道蠕動；可溶性纖維被腸菌發酵，產生短鏈脂肪酸（如丁酸），丁酸是大腸細胞的主要燃料，也會抑制發炎。</div></li>
+      <li><div><span class="then">菜單的供應：</span>肉和蛋的纖維是 0。蛋白日全天的食物纖維約 <span class="q">0g</span>，建議量是 25–35g。</div></li>
+      <li><div><span class="then">由 2＋3 推出兩個後果：</span>糞便體積不足會便祕，常見在第 3 天出現；好菌沒有食物，丁酸減少。</div></li>
+      <li><div><a class="ax" href="#A9">A9</a>同時，大量蛋白質會有一部分進到大腸。纖維不足時，腸菌改去發酵蛋白質（腐敗發酵），產生氨和硫化物，這對腸壁不友善。</div></li>
+      <li><div><a class="ax" href="#A12">A12</a>纖維要吸水才會膨脹。水不夠時，纖維反而會讓糞便更乾更硬，所以「纖維片＋500cc」是一個不可拆開的組合。</div></li>
+      <li><div><span class="then">時間：</span>可溶性纖維吸水後在胃裡形成黏稠物，讓胃排空變慢。放在飯前，就會在食物進來前先占掉胃的空間，帶來飽足感，餐後血糖也上升得比較慢。</div></li>
+      <li><div><a class="ax" href="#A13">A13</a>選早餐和晚餐前：這兩餐前面都隔了很長的空腹時間，最容易吃過量。</div></li>
+      <li><div><span class="then">限制：</span>兩顆錠劑的纖維量遠小於 25g，所以它只能撐蛋白日這種短期缺口。纖體日一定要把真蔬菜加回來，這一點也解釋了菜單為什麼在連續 3 天蛋白日後立刻接纖體日。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">很高。拿掉後第 3 天左右便祕，「清腸」做不到</span></div><div><span class="k">份量</span><span class="v">2 顆，各配 500cc 水</span></div><div><span class="k">時間</span><span class="v">早餐前、晚餐前（07:30、17:30）</span></div></div>
+  </article>
+
+  <article class="prod" id="p-dx" style="--c:var(--key)">
+    <div class="ph"><h3>3　DX 蔬果綜合營養片</h3><span class="rank">必要性 9/12 · 核心</span></div>
+    <p class="q1">要回答的問題：吃得少，為什麼不能少補？為什麼一定要隨餐、分三次？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A3">A3</a>燃燒脂肪、合成蛋白質、修復組織，每個步驟都是由酵素完成的，而很多酵素必須配上維生素或礦物質才能運作。</div></li>
+      <li><div><a class="ax" href="#A2">A2</a>大部分維生素和全部礦物質，身體都造不出來。</div></li>
+      <li><div><span class="then">食物的規則：</span>吃一份食物，熱量和微量營養素同時進來，比例大致固定。</div></li>
+      <li><div><span class="then">由 3 推出：</span>熱量砍到 40–70%，如果食物種類不變，微量營養素也只剩 40–70%。</div></li>
+      <li><div><span class="then">蛋白日更極端：</span>蔬果整類拿掉，維生素 C、葉酸、鉀、類胡蘿蔔素和多酚，幾乎歸零。</div></li>
+      <li><div><a class="ax" href="#A3">A3</a>需求面卻沒有下降：身體燒的燃料總量沒有變少，只是從「吃進來的」改成「燒自己的脂肪」，所以需要的輔因子不會減少。</div></li>
+      <li><div><span class="then">由 4＋5＋6 推出：</span>供應少了一半、需求不變，就形成缺口。補位者必須「幾乎沒有熱量、但營養素齊全」，也就是錠劑。</div></li>
+      <li><div><a class="ax" href="#A10">A10</a>蔬果裡的植化素不是必需營養素，但屬於抗氧化物。燃燒脂肪時自由基變多，21 種蔬果萃取就是用來補回這部分抗氧化支援。</div></li>
+      <li><div><a class="ax" href="#A7">A7</a>時間（1）：DX 裡的 A、D、E、K 和類胡蘿蔔素是脂溶性的，需要膽汁，膽汁要吃到含油脂的食物才會釋放，所以要隨餐。</div></li>
+      <li><div><a class="ax" href="#A8">A8</a>時間（2）：DX 裡的 B 和 C 是水溶性的，存不住，分成三餐吃，全天血中都有。礦物質空腹吃也容易反胃。</div></li>
+      <li><div><span class="then">限制：</span>錠劑沒有纖維、沒有體積，也沒有原形蔬菜裡的全部成分，所以它只能補短期缺口，不能長期代替蔬菜。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">高。拿掉後幾週內出現疲倦、免疫力下降、代謝變慢</span></div><div><span class="k">份量</span><span class="v">3 組（每餐 1 組）</span></div><div><span class="k">時間</span><span class="v">隨早、午、晚三餐</span></div></div>
+  </article>
+
+  <article class="prod" id="p-c" style="--c:var(--fire)">
+    <div class="ph"><h3>4　強效 C 營養片</h3><span class="rank">必要性 8/12 · 重要</span></div>
+    <p class="q1">要回答的問題：DX 裡已經有 C，為什麼還要另外補？為什麼是早晚各一顆？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A2">A2</a>人類缺少合成維生素 C 的最後一個酵素（大多數動物都有），所以一定要從食物攝取。</div></li>
+      <li><div><a class="ax" href="#A3">A3</a>C 是合成膠原蛋白必要的輔因子。皮膚、血管壁、韌帶都是膠原蛋白，沒有 C，吃進來的蛋白質也組不成膠原蛋白。</div></li>
+      <li><div><a class="ax" href="#A10">A10</a>C 是水溶性抗氧化物，能把用過的維生素 E 還原再用；免疫細胞裡的 C 濃度也很高。</div></li>
+      <li><div><span class="then">菜單的供應：</span>C 幾乎只在蔬果裡，肉和蛋幾乎沒有，所以蛋白日的供應約為 0。</div></li>
+      <li><div><span class="then">需求面：</span>燃燒脂肪讓自由基增加，減重期間免疫力也承受壓力，需求不會下降。</div></li>
+      <li><div><a class="ax" href="#A8">A8</a>C 是水溶性的，體內沒有大倉庫，一次吃很多，吸收比例會下降，多的經尿排掉，血中濃度幾小時後就回落。</div></li>
+      <li><div><span class="then">由 6 推出：</span>穩定的做法是「緩釋＋分次」，不是「一次大量」。每顆 500mg、緩釋 8 小時，08:00 和 18:00 各一顆，大約涵蓋 16 小時。</div></li>
+      <li><div><span class="then">和 DX 的分工：</span>DX 提供基礎量的 C，強效 C 則補足蛋白日完全沒有水果時的缺口，並延長血中有 C 的時間。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">中高。缺乏要幾週才會出現，但對膠原蛋白和免疫有直接影響</span></div><div><span class="k">份量</span><span class="v">2 顆 = 1,000mg</span></div><div><span class="k">時間</span><span class="v">早餐、晚餐（相隔約 10 小時）</span></div></div>
+  </article>
+
+  <article class="prod" id="p-ca" style="--c:var(--key)">
+    <div class="ph"><h3>5　加美 D 鈣片（鈣、鎂、D3）</h3><span class="rank">必要性 7/12 · 重要</span></div>
+    <p class="q1">要回答的問題：短期內沒有症狀，為什麼還要吃？為什麼一定放在餐間、分三次？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A11">A11</a>血鈣管控的是神經傳導、肌肉收縮和心跳，必須維持在很窄的範圍內。</div></li>
+      <li><div><a class="ax" href="#A11">A11</a>吃進來的鈣不夠時，副甲狀腺素上升，從骨頭溶出鈣去補血鈣。骨頭是一個大倉庫，所以短期內血鈣正常、沒有症狀。</div></li>
+      <li><div><span class="then">菜單的供應：</span>沒有奶類，沒有豆腐，深綠色蔬菜也少，一天約 <span class="q">100–200mg</span>，建議量是 1,000mg。</div></li>
+      <li><div><span class="then">由 2＋3 推出：</span>每天約缺 800mg，45 天累計約向骨頭借了 36g 鈣。看不見，但一定會累積。</div></li>
+      <li><div><span class="then">鎂的部分：</span>鎂也主要在奶類、全穀、堅果裡，菜單同樣偏少。低醣初期排鈉排水<a class="ax" href="#A11">A11</a>，鎂和鉀也跟著流失，這是抽筋、心悸的可能原因之一。</div></li>
+      <li><div><a class="ax" href="#A2">A2</a>D3 能提高腸道吸收鈣的能力。D 可以靠曬太陽合成，但長時間待在室內的人普遍不足，所以和鈣放在同一錠。</div></li>
+      <li><div><a class="ax" href="#A8">A8</a>時間（1）：腸道主動吸收鈣的運輸蛋白會飽和，單次 500mg 以內吸收率最好，所以 6 錠分三次吃。</div></li>
+      <li><div><a class="ax" href="#A8">A8</a>時間（2）：鈣和鐵在腸道會互相競爭吸收。午餐和晚餐的肉、DX 裡都有鐵，把鈣移到餐間，這兩餐的鐵就能吸收完整。</div></li>
+      <li><div><a class="ax" href="#A12">A12</a>時間（3）：每次配 300cc 水，稀釋尿液，降低結晶的機會。</div></li>
+    </ol>
+    <div class="trade"><b>取捨：</b>鈣如果隨餐吃，能在腸道裡先和食物中的草酸結合，反而可以減少草酸鈣結石。菜單選擇放在餐間，換到的是吸收率和鐵。蛋白日只吃肉和蛋，草酸本來就很少，這個代價很低；纖體日如果常吃菠菜這類高草酸蔬菜，可以和健管師討論，把其中一次鈣挪到正餐。</div>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">中。缺乏是慢性累積，但菜單幾乎完全沒有鈣</span></div><div><span class="k">份量</span><span class="v">6 錠，每次 2 錠</span></div><div><span class="k">時間</span><span class="v">10、14、16 點，避開正餐</span></div></div>
+  </article>
+
+  <article class="prod" id="p-b" style="--c:var(--key)">
+    <div class="ph"><h3>6　雙效 B 群</h3><span class="rank">必要性 7/12 · 重要</span></div>
+    <p class="q1">要回答的問題：吃得少，為什麼 B 群需求反而不會減少？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A3">A3</a>每一種燃料轉成能量，都要 B 群當輔酶：B1 負責醣，B2、B3、B5 負責脂肪酸氧化和產能，B6 負責胺基酸轉換，B7 負責糖質新生。</div></li>
+      <li><div><a class="ax" href="#A2">A2</a>B 群身體幾乎造不出來（B3 可以用色胺酸少量轉換）。</div></li>
+      <li><div><a class="ax" href="#A8">A8</a>B 群大多是水溶性的，存量小。以 B1 為例，體內只有約 30mg，攝取不足時幾週內就可能缺乏。</div></li>
+      <li><div><span class="then">關鍵推論：</span>輔酶的需求取決於「燒了多少燃料」，不取決於「吃了多少」。健管期間吃得少，但身體燒的總量沒有少（缺口由體脂肪補上），所以 B 群需求沒有下降。</div></li>
+      <li><div><a class="ax" href="#A6">A6</a>蛋白日的糖質新生和胺基酸代謝增加，特別需要 B6 和 B7。</div></li>
+      <li><div><span class="then">菜單的供應：</span>肉和蛋有 B12、B6、B3、B2；但 B1 和葉酸主要在全穀、豆類和蔬菜裡，蛋白日偏低。DX 已經含有 B 群，所以 B 群錠是在 DX 之上「加碼」。</div></li>
+      <li><div><span class="then">時間：</span>白天是能量流最大的時候，B 群和蛋白素一起放在餐間，B6 可以和胺基酸同時到位。分三次加上緩釋，是在對應<a class="ax" href="#A8">A8</a>的「存不住」。</div></li>
+      <li><div><span class="then">限制：</span>晚上不吃比較像作息安排，B 群干擾睡眠的證據不強。尿液變黃是多出來的 B2 被排掉，屬於正常現象。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">中。DX 已經涵蓋一部分，它負責把量拉高</span></div><div><span class="k">份量</span><span class="v">3 顆</span></div><div><span class="k">時間</span><span class="v">10、14、16 點，配蛋白素</span></div></div>
+  </article>
+
+  <article class="prod" id="p-fish" style="--c:var(--fire)">
+    <div class="ph"><h3>7　三倍強效魚油</h3><span class="rank">必要性 6/12 · 重要</span></div>
+    <p class="q1">要回答的問題：它和「降發炎」的連結是什麼？為什麼要天天吃，不能想到才吃？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A2">A2</a>ω-3 必需脂肪酸只能吃進來。身體可以把植物的 ALA 轉成 EPA、DHA，但轉換率很低（EPA 約 5–10%，DHA 不到 5%）。</div></li>
+      <li><div><span class="then">細胞膜的組成：</span>細胞膜的脂肪酸組成，取決於長期吃進來的脂肪。</div></li>
+      <li><div><a class="ax" href="#A10">A10</a>發炎訊號分子是從細胞膜的脂肪酸做出來的：ω-6 做出來的訊號偏促發炎；EPA、DHA 做出來的偏溫和，還能做出負責「結束發炎」的分子。</div></li>
+      <li><div><span class="then">由 2＋3 推出：</span>膜上的 ω-3 比例越高，發炎越容易被關掉。這直接服務健管的主要目標：降低慢性發炎。</div></li>
+      <li><div><span class="then">現況：</span>外食的 ω-6 比 ω-3 約為 10–20 比 1。健管又要少油，魚只是可選的肉類之一，所以 ω-3 的攝取不穩定。</div></li>
+      <li><div><span class="then">份量：</span>每天約 1g EPA＋DHA，相當於每週吃 2–3 次油脂多的魚。2 粒魚油 = 572mg EPA＋428mg DHA ≈ 1g。</div></li>
+      <li><div><a class="ax" href="#A7">A7</a>時間：魚油本身就是脂肪，要靠膽汁乳化，和含油脂的一餐一起吃（蛋黃、肉），吸收比較好；空腹吃容易有魚腥味的嗝。</div></li>
+      <li><div><span class="then">為什麼不能斷：</span>細胞膜的組成要好幾週才會換過一輪，效果是慢慢累積的，所以要每天固定吃。</div></li>
+    </ol>
+    <div class="trade"><b>注意：</b>魚油會稍微降低血小板凝集。正在服用抗凝血藥或即將動手術的人，要先問醫師。</div>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">中。不是急性缺乏，但直接服務降發炎的目標</span></div><div><span class="k">份量</span><span class="v">2 粒 ≈ 1g ω-3</span></div><div><span class="k">時間</span><span class="v">早餐、晚餐（配蛋、肉）</span></div></div>
+  </article>
+
+  <article class="prod" id="p-gut" style="--c:var(--gut)">
+    <div class="ph"><h3>8　益生菌 · 易孅菌</h3><span class="rank">必要性 5/12 · 輔助</span></div>
+    <p class="q1">要回答的問題：為什麼第一週吃最多？為什麼活菌在飯前，後生元卻可以隨餐？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A9">A9</a>腸道菌相的組成，由它們吃到的東西決定。</div></li>
+      <li><div><span class="then">由 1 推出：</span>飲食一劇變（高蛋白、零纖維），菌相在幾天內就會跟著改變。第一週從正常飲食進到蛋白日，是 45 天裡變化最劇烈的時候。</div></li>
+      <li><div><span class="then">所以在最不穩定的時間點給最多的支援：</span>準備日吃易孅菌 6 顆，蛋白日吃益生菌 3 條；之後飲食穩定下來，就降到每天 1 顆維持。</div></li>
+      <li><div><span class="then">外來菌的性質：</span>大部分吃進來的益生菌不會長期住下來，只在吃的期間影響腸道環境，所以要持續吃，停了效果就會淡掉。</div></li>
+      <li><div><span class="then">活菌的時間：</span>活菌要通過胃酸。空腹時胃酸最強，食物進來後胃酸會被中和。實驗觀察到，在飯前 30 分鐘內或隨餐吃，存活率最好；飯後才吃最差。所以「飯前，接著吃飯」是合理的安排。</div></li>
+      <li><div><span class="then">後生元的時間：</span>易孅菌是加熱滅活的菌體，不需要活著通過胃，時間可以自由安排。放在早餐是對應<a class="ax" href="#A13">A13</a>，綁在固定動作上最不會忘。</div></li>
+      <li><div><span class="then">限制：</span>益生菌的效果依菌株而不同，不能當作通則；它不是必需營養素，沒有它不會出現缺乏症。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">輔助。第一週價值最高，之後是維持</span></div><div><span class="k">份量</span><span class="v">準備日 易孅菌 6 顆 → W1 蛋白日 益生菌 3 條 → 易孅菌 1 顆/日</span></div><div><span class="k">時間</span><span class="v">活菌：飯前；後生元：早餐</span></div></div>
+  </article>
+
+  <article class="prod" id="p-tea" style="--c:var(--fire)">
+    <div class="ph"><h3>9　綠茶素</h3><span class="rank">必要性 4/12 · 輔助</span></div>
+    <p class="q1">要回答的問題：它不是必需營養素，存在的理由是什麼？為什麼絕對不能空腹？</p>
+    <ol class="chain">
+      <li><div><a class="ax" href="#A2">A2</a>兒茶素（EGCG）不是必需營養素，身體不需要它也能運作，所以沒有「缺乏症」。它的必要性只能從「加分」來論證。</div></li>
+      <li><div><a class="ax" href="#A10">A10</a>EGCG 屬於多酚，可以抗氧化，能分擔燃燒脂肪時多出來的自由基。它也能輕微增加脂肪氧化，但效果小。</div></li>
+      <li><div><span class="then">和八戒的關係：</span>八戒禁茶，原因是咖啡因和「規則越簡單越好」<a class="ax" href="#A13">A13</a>，不是茶多酚不好。去掉咖啡因的萃取，等於把茶的優點補回來、把風險拿掉。</div></li>
+      <li><div><a class="ax" href="#A8">A8</a>風險：空腹吃，EGCG 的血中濃度會比隨餐高出好幾倍；高劑量綠茶萃取物空腹服用有肝損傷的個案，歐洲食品安全局評估每天 800mg 以上會讓肝指數上升。</div></li>
+      <li><div><span class="then">由 4 推出：</span>一定要隨餐，壓低吸收的高峰。健管本來就是要讓肝臟休養，這一點沒有讓步空間。</div></li>
+      <li><div><span class="then">代價：</span>兒茶素隨餐吃，會抑制植物性鐵（非血基質鐵）的吸收；肉類的血基質鐵受影響較小，健管的鐵主要來自肉，所以代價有限。</div></li>
+    </ol>
+    <div class="verdict"><div><span class="k">必要性</span><span class="v">最低。拿掉不影響成敗；肝功能異常者應先停用</span></div><div><span class="k">份量</span><span class="v">3 顆</span></div><div><span class="k">時間</span><span class="v">只能隨三餐，不能空腹</span></div></div>
+  </article>
+</section>
+
+<section class="sec" id="rank">
+  <div class="sec-head">
+    <div class="eyebrow">第 3 層 · 順序之一：必要性</div>
+    <h2>必要性排序：四把尺，每把都來自公理</h2>
+    <p class="lead">「必要」可以被量化。每一項營養品用四個問題打分，每題 1–3 分，總分 4–12。四個問題分別對應前面的公理，不是憑感覺挑的。</p>
+  </div>
+  <div class="read">
+    <div><b>尺 1 · 缺口</b>菜單本身給了多少？幾乎沒有給 3 分，部分有給 2 分，不是必需營養素 1 分。<a class="ax" href="#A2">A2</a></div>
+    <div><b>尺 2 · 倉庫</b>身體存得住嗎？完全沒有倉庫 3 分，存量能撐幾週 2 分，有大倉庫 1 分。<a class="ax" href="#A4">A4</a><a class="ax" href="#A8">A8</a><a class="ax" href="#A11">A11</a></div>
+    <div><b>尺 3 · 速度＋目標</b>缺了多快出事（幾天 3、幾週 2、幾個月 1）？會不會直接破壞計畫目標（肌肉、腸道、執行力 3，發炎 2，加分 1）？<a class="ax" href="#A13">A13</a></div>
+  </div>
+  <div class="mar-wrap"><table class="score">
+    <thead><tr><th style="text-align:left">項目</th><th>缺口</th><th>倉庫</th><th>出事速度</th><th>目標影響</th><th>總分</th><th style="text-align:left">分級</th></tr></thead>
+    <tbody id="scoreBody"></tbody>
+  </table></div>
+  <div class="panel">
+    <h3>總分分布（12 分滿分）</h3>
+    <div class="tierline" id="tierline"></div>
+    <p class="note">分級門檻：9 分以上是核心（缺口大、沒倉庫、幾天內就出事），6–8 分是重要，5 分以下是輔助。水、蛋白素、纖維片、DX 四項，是「熱量變少後一定會缺」的東西；魚油、C、鈣、B 群補的是慢性累積的缺口；益生菌和綠茶素不是必需營養素，屬於加分項。</p>
+  </div>
+  <div class="trade"><b>和直覺不同的地方：</b>鈣常被當成「一定要補」，但它只拿到 7 分，因為骨頭是巨大的倉庫<a class="ax" href="#A11">A11</a>，短期內不會出事。這不代表可以不吃，而是在預算或吞嚥量有限時，它的優先順序排在蛋白素、纖維片和 DX 之後。</div>
+</section>
+
+<section class="sec" id="clock">
+  <div class="sec-head">
+    <div class="eyebrow">第 3 層 · 順序之二：一天之內</div>
+    <h2>一天的時間順序：每個位置都是推出來的</h2>
+    <p class="lead">把前面每條鏈的「時間」那一步抽出來，照時間排成一列，就是菜單的時間表。沒有任何一個時間點是隨意排的。</p>
+  </div>
+  <ol class="chain" style="--c:var(--ink)">
+    <li><div><b>07:30　最先吃纖維片＋500cc，而不是直接吃早餐</b><br><a class="ax" href="#A12">A12</a>纖維要先吸水膨脹，需要時間。整夜沒喝水，血液偏濃，這杯水同時補回夜間流失的水分。活菌（第一週）也排在這裡，因為飯前、接著吃飯，存活率最好。</div></li>
+    <li><div><b>08:00　早餐集中脂溶性和抗氧化的營養品</b><br><a class="ax" href="#A7">A7</a>蛋黃的油脂會觸發膽汁，所以魚油、DX 的脂溶性成分要放在這一餐。<a class="ax" href="#A8">A8</a>強效 C 從這裡開始第一段 8 小時。綠茶素一定要跟食物一起吃。後生元依<a class="ax" href="#A13">A13</a>綁在每天第一餐。</div></li>
+    <li><div><b>10:00　第一次餐間：蛋白素＋B 群＋鈣</b><br><a class="ax" href="#A4">A4</a>早餐的胺基酸大約 2 小時就吸收完了，要接上。<a class="ax" href="#A8">A8</a>鈣在這裡吃，避開午餐的鐵，也避開 DX 裡其他礦物質的競爭。B 群和蛋白素同時到位。</div></li>
+    <li><div><b>12:00　午餐：DX 第二組＋綠茶素，鈣和纖維片都不放</b><br><a class="ax" href="#A8">A8</a>午餐的肉是鐵的主要來源，所以這一餐不放鈣。沒有放纖維片，因為午餐前隔的時間短（10:00 剛吃過蛋白素），比較不容易吃過量。</div></li>
+    <li><div><b>14:00、16:00　兩次餐間，重複 10:00 的組合</b><br><a class="ax" href="#A13">A13</a>下午是最容易嘴饞的時段，每 2 小時給一次蛋白質加 300cc 水，在飢餓累積到失控之前就先截斷。鈣在這裡吃完第二、第三次。</div></li>
+    <li><div><b>17:30　晚餐前第二顆纖維片＋500cc</b><br><a class="ax" href="#A13">A13</a>晚餐前面隔了整個下午，是一天中最容易吃多的一餐，所以在這裡放第二道「墊胃」。</div></li>
+    <li><div><b>18:00　晚餐：DX 第三組、C 第二顆、魚油第二粒、綠茶素第三顆</b><br><a class="ax" href="#A8">A8</a>C 從 18:00 再開始一段 8 小時。<a class="ax" href="#A7">A7</a>晚餐的肉一樣有油脂，可以幫助魚油吸收。這是當天最後一次進食。</div></li>
+    <li><div><b>18:00 → 隔天 08:00　14 小時不進食</b><br><a class="ax" href="#A5">A5</a>沒有新的醣和胺基酸進來，胰島素降到低點，身體先用肝醣，再動用脂肪。這段時間不放任何營養品，也就不需要在晚上打斷這個過程。</div></li>
+  </ol>
+</section>
+
+<section class="sec" id="days">
+  <div class="sec-head">
+    <div class="eyebrow">第 3 層 · 順序之三：45 天</div>
+    <h2>45 天的順序：為什麼是準備 → 蛋白 → 纖體 → 新陳代謝</h2>
+  </div>
+  <ol class="chain" style="--c:var(--ink)">
+    <li><div><b>第一階段一定是準備日，不能直接進蛋白日</b><br><a class="ax" href="#A13">A13</a>6 個時段、10 種營養品，對大多數人是全新的習慣，先在飲食照常的情況下練 3 天，正式開始時才不會手忙腳亂。<a class="ax" href="#A9">A9</a>同時用最大劑量的菌，替接下來的飲食劇變先做準備。</div></li>
+    <li><div><b>蛋白日要「連續 3 天」，不能分散</b><br><a class="ax" href="#A5">A5</a>肝醣要好幾天才會用完。如果中間吃進醣，身體會先拿去補肝醣，前面的消耗等於白費，所以必須連續。這也是為什麼第一週蛋白日一次排 3 天。</div></li>
+    <li><div><b>蛋白日之後立刻接纖體日</b><br><a class="ax" href="#A9">A9</a><a class="ax" href="#A12">A12</a>零蔬菜第 3 天開始便祕，纖維片只能撐短期，所以第 4 天一定要把真蔬菜加回來。<a class="ax" href="#A13">A13</a>連續的蛋白日太難熬，輪替才撐得下去。</div></li>
+    <li><div><b>W2–W4 每週一次蛋白日</b><br>每週一重新把肝醣壓低一次，提醒身體繼續用脂肪當燃料；一週只有一天，對執行力的壓力小很多<a class="ax" href="#A13">A13</a>。</div></li>
+    <li><div><b>最後兩週才是新陳代謝日</b><br><a class="ax" href="#A1">A1</a>長期的能量缺口，會讓身體下調消耗量（甲狀腺素、瘦素下降），也就是代謝適應。最後兩週加回穀物，瘦肉加倍，熱量拉回到接近維持量，補回肝醣，讓身體知道不是饑荒，同時練習回到日常飲食。</div></li>
+    <li><div><b>營養品 45 天都不變</b><br>由主幹推導，營養品要補的是「熱量下降造成的缺口」。45 天裡熱量一直低於平常，這個缺口就一直存在，所以種類和份量都不需要換；只有菌是依飲食變化最劇烈的時間點調整。<a class="ax" href="#A13">A13</a>規則不變，也最容易執行。</div></li>
+  </ol>
+</section>
+
+<footer class="src">
+  <b>參考文獻</b>　Keys A, et al. <i>The Biology of Human Starvation</i>, 1950｜Sumithran P, et al. <i>NEJM</i> 2011;365:1597｜Sender R, et al. Revised estimates for the number of human and bacteria cells in the body. <i>PLoS Biol</i> 2016｜Tompkins TA, et al. The impact of meals on a probiotic during transit through a model of the human upper gastrointestinal tract. <i>Benef Microbes</i> 2011｜Jäger R, et al. ISSN position stand: protein and exercise. <i>JISSN</i> 2017｜EFSA Panel. Scientific opinion on the safety of green tea catechins. <i>EFSA Journal</i> 2018｜Heaney RP. Factors influencing the measurement of bioavailability, taking calcium as a model. <i>J Nutr</i> 2001｜衛生福利部《國人膳食營養素參考攝取量》、《食物代換表》。<br>
+  數值為一般成人估算，個別產品以實際標示為準。本頁是營養教育內容，不能取代醫師診斷；腎臟病、痛風、使用降血糖藥或抗凝血藥、肝功能異常、懷孕或哺乳者，請先諮詢醫師。
+</footer>
+</div>
+
+<script>
+(function(){
+  var R=[
+    ["水","ink",3,3,3,3],["蛋白素","build",3,3,3,3],["纖維片","gut",3,3,3,2],["DX","key",3,2,2,2],
+    ["強效 C","fire",3,2,2,1],["鈣鎂 D","key",3,1,1,2],["雙效 B 群","key",1,2,2,2],["魚油","fire",2,1,1,2],
+    ["益生菌 · 易孅菌","gut",1,1,1,2],["綠茶素","fire",1,1,1,1]];
+  function pips(n){var s='<span class="pips" aria-label="'+n+' 分">';for(var i=1;i<=3;i++)s+='<i'+(i<=n?' class="on"':'')+'></i>';return s+'</span>'}
+  function tier(t){return t>=9?'核心':t>=6?'重要':'輔助'}
+  var h='',tl='';
+  R.forEach(function(r){
+    var t=r[2]+r[3]+r[4]+r[5];
+    h+='<tr><th><span class="chip" style="--c:var(--'+r[1]+');background:transparent;padding:0;font-size:14px">'+r[0]+'</span></th><td>'+pips(r[2])+'</td><td>'+pips(r[3])+'</td><td>'+pips(r[4])+'</td><td>'+pips(r[5])+'</td><td class="t">'+t+'</td><td style="text-align:left">'+tier(t)+'</td></tr>';
+    tl+='<div class="tl"><span>'+r[0]+'</span><div class="tr"><div class="f" style="width:'+(t/12*100)+'%;background:var(--'+r[1]+')"></div></div><span class="n">'+t+'</span></div>';
+    if(r[0]==="DX")tl+='<div class="cut">▲ 核心（≥9）　▼ 重要（6–8）</div>';
+    if(r[0]==="魚油")tl+='<div class="cut">▼ 輔助（≤5）</div>';
+  });
+  document.getElementById('scoreBody').innerHTML=h;
+  document.getElementById('tierline').innerHTML=tl;
+})();
+</script>
+
+</body>
+</html>
